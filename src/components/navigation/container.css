@@ -1,0 +1,74 @@
+body {
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    font-family: 'NTR', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    background-color: #121212;
+}
+
+.no-href {
+    text-decoration: none;
+    cursor: default;
+    color: #BFBFBF;
+}
+
+.browse {
+  width: 84vw;
+  color: #BFBFBF;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.container {
+  width: 84vw;
+  margin: 5vw 8vw 2vw 5vw;
+  min-height: 80vh;
+}
+
+.header {
+  font-size: 1.5rem;
+  color: #BFBFBF;
+  margin: 2vw 0 1vw 0.3rem;
+  text-align: start;
+}
+
+
+.browse_container {
+  width: 67vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.found_game {
+  position: relative;
+  width: 62vw;
+  margin: 1vw 0 3vw 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.found_game .mask {
+  z-index: 1;
+  width: 62vw;
+  height: 15vw;
+  position: absolute;
+  border-radius: 0.7rem;
+  transform: scale(1.05, 1.17);
+  transition: background-color 0.2s linear;
+  cursor: default;
+}
+
+.found_game:hover .mask {
+  background-color: #181818;
+}

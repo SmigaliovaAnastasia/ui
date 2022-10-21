@@ -1,0 +1,28 @@
+.stars {
+  width: 9vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.star {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0 0 0 0.2rem;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.purple {
+  background-image: url("../../../public/img/star_purple.svg");
+}
+
+.black {
+  background-image: url("../../../public/img/star_black.svg");
+}
+
+.half_purple {
+  background-image: url("../../../public/img/star_half_purple.svg");
+}

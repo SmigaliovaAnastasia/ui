@@ -1,0 +1,307 @@
+.games p {
+    width: 96%;
+    text-align: left;
+    color: #BFBFBF;
+    margin: 0.8vw 0;
+    font-size: 0.8rem;
+    cursor: pointer;
+    cursor: pointer;
+}
+
+.browse {
+    width: 84vw;
+    color: #BFBFBF;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.filters {
+    width: 17vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 1.1rem;
+}
+
+.line {
+    width: 100%;
+    background-color: #262626;
+    height: 0.1rem;
+}
+
+.head {
+    margin: 0 0 0.5rem 0 !important;
+    color: white;
+}
+
+.filter, .head{
+    margin: 0.5rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filters p {
+    margin: 0;
+    padding: 0;
+    cursor: default;
+}
+
+.clickable {
+    cursor: pointer !important;
+}
+
+.filtericons {
+    position: relative;
+    bottom: 0.1rem;
+    margin-left: 0.5rem;
+    width: 0.6rem;
+    cursor: pointer;
+    transition: transform 0.2s linear;
+}
+
+.search {
+    width: 67vw;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 0.5rem 0;
+}
+
+.searchbar_container {
+    position: relative;
+    max-width: 20vw;
+    overflow: hidden;
+    border-radius: 0.3rem;
+}
+
+.searchbar {
+    width: 16vw;
+    background-color: #262626;
+    border: none;
+    border-radius: 0.3rem;
+    color: #BFBFBF;
+    font-family: 'NTR', sans-serif;
+    font-size: 1rem;
+    padding: 0.2rem 2rem 0 2rem;
+}
+
+.searchbar::placeholder {
+  color: #BFBFBF;
+  opacity: 1;
+}
+
+
+.magnifier {
+    position: absolute;
+    height: 0.8rem;
+    top: 0.75rem;
+    left: 0.7rem;
+}
+
+.sort {
+    position: relative;
+    margin-top: 0.4rem;
+    margin-left: 2.5vw;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.sort p {
+    margin: 0 0 0 0.2rem;
+    padding: 0;
+}
+
+.browse_container {
+    width: 67vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.found_game {
+    position: relative;
+    width: 62vw;
+    margin: 1vw 0 3vw 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.found_game .mask {
+    z-index: 1;
+    width: 62vw;
+    height: 15vw;
+    position: absolute;
+    border-radius: 0.7rem;
+    transform: scale(1.05, 1.17);
+    transition: background-color 0.2s linear;
+    cursor: default;
+}
+
+.mask {
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
+.found_game:hover .mask {
+    background-color: #181818;
+}
+
+.picture {
+    z-index: 3;
+    width: 20vw;
+    height: 15vw;
+    background-color: #262626;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.details {
+    z-index: 3;
+    width: 39.5vw;
+    height: 15vw;
+    margin-left: 2.5vw;
+    max-height: 15vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.found_game p {
+    font-size: 0.9rem;
+    margin: 0 0 0.2rem 0.2rem;
+    line-height: 1.3rem;
+    padding: 0;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 30vw;
+    height: 15vw;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.name {
+    font-size: 1.3rem !important;
+    margin-top: 0.5vw !important;
+    margin-bottom: 1vw !important;
+    color: white;
+}
+
+.string {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: start;
+}
+
+.ratings {
+    width: 9vw;
+    height: 15vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    cursor: default !important;
+}
+
+.add {
+    font-size: 1.3rem !important;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    line-height: 0.7rem !important;
+    transition: color 0.15s linear;
+}
+
+.add:hover {
+    color: white;
+}
+
+.rating {
+    width: 9vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.number {
+    font-size: 1rem !important;
+    margin-top: 0.6rem !important;
+    color: white;
+}
+
+.average {
+    font-size: 0.7rem !important;
+    margin-top: 0 !important;
+    line-height: 0.5rem !important;
+    color: white;
+}
+
+.show_more {
+    margin-left: 20vw;
+    width: 39.5vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s linear;
+}
+
+.show_more:hover {
+    color: white;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.sorting_method_table {
+    background-color: #262626;
+    border-radius: 0.2rem;
+    width: 12.5rem;
+    position: absolute;
+    top: 2rem;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.sorting_method_table p {
+    margin: 0.3rem 0.8rem;
+    color: #BFBFBF;
+    transition: color 0.15s linear;
+}
+
+.sorting_method_table p:hover {
+    color: white;
+}
