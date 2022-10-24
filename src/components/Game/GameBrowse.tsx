@@ -4,6 +4,7 @@ import { StarsBar } from '../Ratings/StarsBar';
 import './GameBrowse.css';
 import { useGameAvailabilityStatus } from '../CustomHook';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 export function FoundGame(props: {game: Game}) {
     const [isAvailable, substractCopy] = useGameAvailabilityStatus(props.game.copiesLeft);
@@ -23,7 +24,7 @@ export function FoundGame(props: {game: Game}) {
         <div className="details">
             <div className="description">
                 <div>
-                    <p className="name">{props.game.name}</p>
+                    <Link to={`/browse/${props.game.id}`}><p className="name">{props.game.name}</p></Link>
                 </div>
                 <div>
                     <div className="string"><p>Genre:</p><p>{props.game.genre}</p></div>

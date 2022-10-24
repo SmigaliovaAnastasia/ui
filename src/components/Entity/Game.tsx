@@ -10,4 +10,5 @@ export interface Game {
   description: string;
   rating: number;
   copiesLeft : number;
+  playingTime: string;
 }
