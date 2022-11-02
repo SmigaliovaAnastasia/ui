@@ -15,7 +15,7 @@ const schema = yup.object({
   minNumOfPlayers: yup.number().required().min(1).max(100),
   maxNumOfPlayers: yup.number().required().min(1).max(100),
   description: yup.string().max(1000),
-  rules: yup.string().max(10000),
+  rules: yup.string().max(1000),
   playingTime: yup.string().matches(/^[0-9]{1,3}((-[0-9]{1,3})|\+) (min|hours?)$/),
   releaseDate: yup.date().required(),
 }).required();
@@ -24,6 +24,7 @@ const StyledTextField = styled(TextField) ({
   backgroundColor: "#262626",
   padding: 0.1,
   width: "100%",
+  borderRadius: 10,
   '& p':{
     color:'rgb(255, 108, 50)',
   },

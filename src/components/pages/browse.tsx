@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import '../navigation/container.css'
-import { Game } from "../Entity/Game";
 import { FoundGame } from "../Game/GameBrowse";
 import { useState } from "react";
 import { useEffect } from "react";

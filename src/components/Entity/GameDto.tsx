@@ -1,11 +1,20 @@
+import { ComplexityLevelDto } from "./ComplexityLevelDto";
+import { GameSeriesDto } from "./GameSeriesDto";
+import { GenreDto } from "./GenreDto";
+
 export interface GameDto {
-  gameId : number;
-  name: string;
-  minPalyerAge: number;
-  minNumOfPlayers: number;
-  maxNumOfPlayers: number;
-  description: string;
-  rules: string;
-  playingTime: string;
-  releaseDate: Date;
+  complexityLevelDto : ComplexityLevelDto,
+  gameSeriesDto: GameSeriesDto,
+  description : string,
+  id : string,
+  genreDtos : Array<GenreDto>, 
+  imageUrl : string, 
+  maxNumOfPlayers : number,
+  minNumOfPlayers : number,
+  minPalyerAge : number,
+  name : string, 
+  maxPlayingTimeMinutes : number, 
+  minPlayingTimeMinutes : number, 
+  releaseDate : Date,
+  rules : string
 }

@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import '../navigation/container.css'
-import { Game } from "../Entity/Game";
 import { FoundGame } from "../Game/GameBrowse";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -19,7 +18,7 @@ export function SingleGame(){
   const [game, setGame] = useState<JSX.Element>();
   
   useEffect(() => {
-    let data = gameservice.getGameById(Number(params.id));
+    let data = gameservice.getGameById(String(params.id));
     data.then((game) => setGame(<GameStandalone key={game.id} game = {game}/>));
   });
 

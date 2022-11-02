@@ -1,10 +1,10 @@
 import React from "react"
-import { Game } from "../Entity/Game"
+import { GameDto } from "../Entity/GameDto"
 import { StarsBar } from "../Ratings/StarsBar"
 import './GameStandalone.css'
 import { Link } from "react-router-dom"
 
-export function GameStandalone(props: {game: Game}) {
+export function GameStandalone(props: {game: GameDto}) {
 
 return (
   <div>
@@ -14,7 +14,7 @@ return (
         </Link>
         <p className="header">{props.game.name}</p>
         <div className="game_container">
-            <div className="game_picture" style = {{ backgroundImage: props.game.imageUrl}}></div>
+            <div className="game_picture" style = {{ backgroundImage: `url(${props.game.imageUrl})`}}></div>
             <div className="game_details">
                 <div className="game_description">
 
@@ -24,28 +24,28 @@ return (
                     </div>
                     <div className="description_line">
                         <p className="description_name">Genre: </p>
-                        <p className="description_text">{props.game.genre}</p>
+                        <p className="description_text">{props.game.genreDtos.map((g) => g.name + ', ')}</p>
                     </div>
 
                     <div className="description_line vertical_block">
                         <div className="vertical_line"></div>
                         <div className="column">
-                            <p className="large">{props.game.complexity}</p>
+                            <p className="large">{props.game.complexityLevelDto.name}</p>
                             <p className="small">Complexity</p>
                         </div>
                         <div className="vertical_line"></div>
                         <div className="column">
-                            <p className="large">{props.game.age}</p>
+                            <p className="large">{props.game.minPalyerAge}</p>
                             <p className="small">Age</p>
                         </div>
                         <div className="vertical_line"></div>
                         <div className="column">
-                            <p className="large">{props.game.minPlayers}-{props.game.maxPlayers}</p>
+                            <p className="large">{props.game.minNumOfPlayers}-{props.game.maxNumOfPlayers}</p>
                             <p className="small">Players</p>
                         </div>
                         <div className="vertical_line"></div>
                         <div className="column">
-                            <p className="large">{props.game.playingTime}</p>
+                            <p className="large">{props.game.minPlayingTimeMinutes} - {props.game.maxPlayingTimeMinutes} min.</p>
                             <p className="small">Playing time</p>
                         </div>
                         <div className="vertical_line"></div>
@@ -67,8 +67,8 @@ return (
                     </div>
 
                     <div className="description_line">
-                        <p className="description_name">FAQs: </p>
-                        <p className="description_text">www.publisher.com/faq </p>
+                        <p className="description_name">Game Series: </p>
+                        <p className="description_text">{props.game.gameSeriesDto.name} </p>
                     </div>
 
                     <p className="description_name last_name">Description: </p>
@@ -77,8 +77,8 @@ return (
                 </div>
                 <div className="right_column">
                     <div className="description_rating">
-                        <StarsBar rating={props.game.rating}></StarsBar>
-                        <p className="description_number" id="rating">{props.game.rating} / 5</p>
+                        <StarsBar rating={4.35}></StarsBar>
+                        <p className="description_number" id="rating">{4.35} / 5</p>
                         <p className="description_average">Average Rating</p>
                     </div>
                     <div className="description_add">
