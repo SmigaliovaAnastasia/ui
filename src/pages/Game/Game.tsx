@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { GameService } from "../services/GameService";
+import { GameService } from "../../services/GameService";
 import { useParams } from "react-router-dom";
-import { GameComponent } from "../components/Games/GameComponent";
+import { GameComponent } from "../../components/Games/GameComponent";
 
 
 export function Game(){

@@ -2,7 +2,7 @@ import { Grid, Card, CardMedia, CardActions } from "@mui/material";
 import './Home.css';
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';
-import { StyledCardComponent } from "../components/StyledCard/StyledCardComponent";
+import { StyledCardComponent } from "../../components/StyledCard/StyledCardComponent";
 
 const StyledCard = styled(Card)({
   color: '#BFBFBF',

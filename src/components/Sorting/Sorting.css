@@ -1,0 +1,11 @@
+.sortingTable {
+  width: 15vw;
+}
+
+.sortingSelect {
+  padding: 0.2rem 0.5rem;
+}
+
+#demo-simple-select-standard:focus{
+  background-color: #121212!important;
+}

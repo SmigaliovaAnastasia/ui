@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import './Container.css';
 import { Route, Routes } from "react-router-dom";
-import { Browse } from "../../pages/Browse";
-import { Game } from "../../pages/Game";
-import { CreateGame } from "../../pages/CreateGame";
-import { Home } from "../../pages/Home"
+import { Browse } from "../../pages/Browse/Browse";
+import { Game } from "../../pages/Game/Game";
+import { CreateGame } from "../../pages/Game/CreateGame";
+import { Home } from "../../pages/Home/Home"
 
 export function Container(){
   

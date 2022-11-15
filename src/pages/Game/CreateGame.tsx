@@ -1,5 +1,5 @@
 import React from "react";
-import { GameService } from "../services/GameService";
+import { GameService } from "../../services/GameService";
 import { useForm, Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";

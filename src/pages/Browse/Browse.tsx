@@ -1,10 +1,12 @@
-import { GameListComponent } from "../components/Games/GameListComponent";
-import { GameListDto } from "../common/Entities/GameDtos/GameListDto";
+import { GameListComponent } from "../../components/Games/GameListComponent";
+import { GameListDto } from "../../common/Entities/GameDtos/GameListDto";
 import { useState } from "react";
 import { useEffect } from "react";
-import { FilterBarComponent } from "../components/Filters/FilterBarComponent";
-import { FilterContext } from "../common/Contexts/FilterContext";
-import { GameService } from "../services/GameService";
+import { FilterBarComponent } from "../../components/Filters/FilterBarComponent";
+import { FilterContext } from "../../common/Contexts/FilterContext";
+import { GameService } from "../../services/GameService";
+import { SortingComponent } from "../../components/Sorting/SortingComponent";
+import "./Browse.css";
 
 export function Browse(){
   
@@ -35,6 +37,8 @@ export function Browse(){
                   <img alt="" className="magnifier" src="./img/Magnifier.svg"/>
                 </div>
               </div>
+                <p>Sort by: </p>
+                <SortingComponent></SortingComponent>
             </div>
             {games}
           </div>
