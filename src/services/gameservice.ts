@@ -1,7 +1,6 @@
-import { environment } from "../environment/environment";
-import { GameListDto } from "../components/Entity/GameListDto";
-import { GameDto } from "../components/Entity/GameDto";
-import { url } from "inspector";
+import { environment } from "../config/environment/environment";
+import { GameListDto } from "../common/Entities/GameDtos/GameListDto";
+import { GameDto } from "../common/Entities/GameDtos/GameDto";
 
 export class GameService {
   private apiUrl: string;

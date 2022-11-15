@@ -1,13 +1,10 @@
-import React, { useContext } from "react";
-import '../navigation/container.css'
-import { FoundGame } from "../Game/GameBrowse";
+import { GameListComponent } from "../components/Games/GameListComponent";
+import { GameListDto } from "../common/Entities/GameDtos/GameListDto";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useRef } from "react";
-import { FilterBar } from "../Filters/FilterBar";
-import { FilterContext } from "../Context/FilterContext";
-import { GameService } from "../../services/gameservice";
-import { Link } from "react-router-dom";
+import { FilterBarComponent } from "../components/Filters/FilterBarComponent";
+import { FilterContext } from "../common/Contexts/FilterContext";
+import { GameService } from "../services/GameService";
 
 export function Browse(){
   
@@ -19,8 +16,8 @@ export function Browse(){
   
   useEffect(() => {
     let data = gameservice.getGames();
-    let newGamesArray = data.then((games) => games.filter(g => g.name.toLowerCase().includes(searchName.toLowerCase())));
-    newGamesArray.then((games) => setGames(games.map((g) => {return <FoundGame key={g.id} game = {g}/>})));
+    let newGamesArray = data.then((games : Array<GameListDto>) => games.filter(g => g.name.toLowerCase().includes(searchName.toLowerCase())));
+    newGamesArray.then((games : Array<GameListDto>) => setGames(games.map((g) => {return <GameListComponent key={g.id} game = {g}/>})));
   }, [searchName]);
   
 
@@ -35,13 +32,13 @@ export function Browse(){
               <div className="properties">
                 <div className="searchbar_container">
                   <input className="searchbar" type="text" placeholder="Search" onChange={e => setSearchName(e.target.value)}/>
-                  <img className="magnifier" src="./img/Magnifier.svg"/>
+                  <img alt="" className="magnifier" src="./img/Magnifier.svg"/>
                 </div>
               </div>
             </div>
             {games}
           </div>
-          <FilterBar></FilterBar>
+          <FilterBarComponent></FilterBarComponent>
         </div>
     </FilterContext.Provider>
   );

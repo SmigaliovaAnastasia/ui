@@ -1,13 +1,13 @@
 import React, { ReactElement, useContext } from 'react';
 import './Filters.css';
-import { Filter } from './Filter';
+import { FilterComponent } from './FilterComponent';
 
-export function FilterBar() {
+export function FilterBarComponent() {
 
   var filters : ReactElement[] = [];
-  filters.push(<Filter key="players" name="Players"></Filter>);
-  filters.push(<Filter key="age" name="Age"></Filter>);
-  filters.push(<Filter key="playingtime" name="Playing time"></Filter>);
+  filters.push(<FilterComponent key="players" name="Players"></FilterComponent>);
+  filters.push(<FilterComponent key="age" name="Age"></FilterComponent>);
+  filters.push(<FilterComponent key="playingtime" name="Playing time"></FilterComponent>);
 
   return (
     <div className="filters">

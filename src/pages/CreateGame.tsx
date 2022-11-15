@@ -1,6 +1,5 @@
 import React from "react";
-import { GameService } from "../../services/gameservice";
-import { GameDto } from "../Entity/GameDto";
+import { GameService } from "../services/GameService";
 import { useForm, Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
@@ -33,7 +32,7 @@ const StyledTextField = styled(TextField) ({
   },
 });
 
-export function AddGame(){
+export function CreateGame(){
   const gameservice = new GameService();
   const { control, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(schema)

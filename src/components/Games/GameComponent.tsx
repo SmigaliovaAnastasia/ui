@@ -1,10 +1,10 @@
-import React from "react"
-import { GameDto } from "../Entity/GameDto"
-import { StarsBar } from "../Ratings/StarsBar"
-import './GameStandalone.css'
+import { GameDto } from "../../common/Entities/GameDtos/GameDto"
+import { GenreDto } from "../../common/Entities/GameDtos/GenreDto"
+import { StarsBarComponent } from "../Ratings/StarsBarComponent"
+import './GameComponent.css'
 import { Link } from "react-router-dom"
 
-export function GameStandalone(props: {game: GameDto}) {
+export function GameComponent(props: {game: GameDto}) {
 
 return (
   <div>
@@ -24,7 +24,7 @@ return (
                     </div>
                     <div className="description_line">
                         <p className="description_name">Genre: </p>
-                        <p className="description_text">{props.game.genreDtos.map((g) => g.name + ', ')}</p>
+                        <p className="description_text">{props.game.genreDtos.map((g : GenreDto) => g.name + ', ')}</p>
                     </div>
 
                     <div className="description_line vertical_block">
@@ -77,8 +77,8 @@ return (
                 </div>
                 <div className="right_column">
                     <div className="description_rating">
-                        <StarsBar rating={4.35}></StarsBar>
-                        <p className="description_number" id="rating">{4.35} / 5</p>
+                        <StarsBarComponent rating={props.game.rating}></StarsBarComponent>
+                        <p className="description_number" id="rating">{props.game.rating} / 5</p>
                         <p className="description_average">Average Rating</p>
                     </div>
                     <div className="description_add">

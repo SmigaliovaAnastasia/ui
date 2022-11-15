@@ -1,16 +1,13 @@
-import React, { useEffect } from 'react';
-import { GameListDto } from '../Entity/GameListDto';
-import { StarsBar } from '../Ratings/StarsBar';
-import './GameBrowse.css';
-import { useRef } from 'react';
+import { GameListDto } from '../../common/Entities/GameDtos/GameListDto';
+import { StarsBarComponent } from '../Ratings/StarsBarComponent';
+import './GameListComponent.css';
 import { Link } from 'react-router-dom';
 
-export function FoundGame(props: {game: GameListDto}) {
-    const image = useRef<HTMLDivElement>(null);
+export function GameListComponent(props: {game: GameListDto}) {
 
   return (
     <div className = "found_game">
-        <div className="mask" ref={image}></div>
+        <div className="mask"></div>
         <div className="picture" style={{ backgroundImage: `url(${props.game.imageUrl})`}} ></div>
         <div className="details">
             <div className="description">
@@ -27,8 +24,8 @@ export function FoundGame(props: {game: GameListDto}) {
             </div>
             <div className="ratings">
                 <div className="rating">
-                    <StarsBar rating={4.35}/>
-                    <p className="number" id="rating">{4.35} / 5</p>
+                    <StarsBarComponent rating={props.game.rating}/>
+                    <p className="number" id="rating">{props.game.rating} / 5</p>
                     <p className="average">Average Rating</p>
                 </div>
                 <p className="add">Add</p>

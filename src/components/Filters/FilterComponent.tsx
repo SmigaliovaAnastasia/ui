@@ -1,18 +1,17 @@
-import React, { ImgHTMLAttributes, ReactElement } from 'react';
 import './Filters.css';
 import { useRef } from 'react';
 import { useContext } from 'react';
-import { FilterContext } from '../Context/FilterContext';
+import { FilterContext } from '../../common/Contexts/FilterContext';
 
-export function Filter(props : {name : string}) {
+export function FilterComponent(props : {name : string}) {
   const filter = useRef<HTMLDivElement>(null);
   const arrow = useRef<HTMLImageElement>(null);
   const {filters, setFilters} = useContext(FilterContext);
 
   function handleclick() {
-    if(filter.current != null && arrow.current != null)
+    if(filter.current !== null && arrow.current !== null)
     {
-      if(filter.current.className == "hidden")
+      if(filter.current.className === "hidden")
       {
         filter.current.className = "";
         arrow.current.style.transform = "rotate(180deg)"
@@ -33,7 +32,7 @@ export function Filter(props : {name : string}) {
     {
       let newFilters = [...filters];
       let index = newFilters.indexOf(props.name);
-      if(index != -1)
+      if(index !== -1)
       {
         filterOption.current.style.backgroundColor = "transparent";
         newFilters.splice(index, 1);
@@ -52,7 +51,7 @@ export function Filter(props : {name : string}) {
       <div className = "filterUnit">
         <div className="filter">
           <p  className="clickable" onClick={handleclick}>{props.name}</p>
-          <img className="filtericons" ref={arrow} src="./img/down.svg"/>
+          <img alt="" className="filtericons" ref={arrow} src="./img/down.svg"/>
         </div>
         <div className="hidden" ref={filter}>
           <div className="filter" >
