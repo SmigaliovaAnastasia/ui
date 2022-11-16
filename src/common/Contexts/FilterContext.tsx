@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { Filter } from "../Models/Filter";
 
 export type FilterContent = {
-  filters: string[]
-  setFilters:(newFilters: string[]) => void
+  filterss: Array<string>
+  setFilters:(newFilters: Array<string>) => void
 }
 
-export const FilterContext = React.createContext<FilterContent>({filters: [], setFilters: () => {}});
+export const FilterContext = React.createContext<FilterContent>({filterss: [], setFilters: () => {}});

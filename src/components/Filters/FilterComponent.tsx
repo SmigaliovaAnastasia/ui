@@ -6,7 +6,7 @@ import { FilterContext } from '../../common/Contexts/FilterContext';
 export function FilterComponent(props : {name : string}) {
   const filter = useRef<HTMLDivElement>(null);
   const arrow = useRef<HTMLImageElement>(null);
-  const {filters, setFilters} = useContext(FilterContext);
+  const {filterss, setFilters} = useContext(FilterContext);
 
   function handleclick() {
     if(filter.current !== null && arrow.current !== null)
@@ -30,7 +30,7 @@ export function FilterComponent(props : {name : string}) {
   {
     if(filterOption.current != null)
     {
-      let newFilters = [...filters];
+      let newFilters = [...filterss];
       let index = newFilters.indexOf(props.name);
       if(index !== -1)
       {

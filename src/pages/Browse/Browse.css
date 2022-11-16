@@ -65,3 +65,11 @@ background-color: #181818;
   margin-left: 2vw;
   padding-bottom: 0.25rem;
 }
+
+.pagination {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
