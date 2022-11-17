@@ -1,8 +1,8 @@
 import { environment } from "../config/environment/environment";
 import { GameListDto } from "../common/Entities/GameDtos/GameListDto";
 import { GameDto } from "../common/Entities/GameDtos/GameDto";
-import { PagedRequest } from "../common/Models/PagedRequest";
-import { PagedResult } from "../common/Models/PagedResult";
+import { PagedRequest } from "../common/Models/PagedRequest/PagedRequest";
+import { PagedResult } from "../common/Models/PagedRequest/PagedResult";
 
 export class GameService {
   private apiUrl: string;

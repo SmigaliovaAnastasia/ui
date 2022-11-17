@@ -56,79 +56,6 @@
     cursor: pointer !important;
 }
 
-.filtericons {
-    position: relative;
-    bottom: 0.1rem;
-    margin-left: 0.5rem;
-    width: 0.6rem;
-    cursor: pointer;
-    transition: transform 0.2s linear;
-}
-
-.search {
-    width: 67vw;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin: 0.5rem 0;
-}
-
-.searchbar_container {
-    position: relative;
-    max-width: 20vw;
-    overflow: hidden;
-    border-radius: 0.3rem;
-}
-
-.searchbar {
-    width: 16vw;
-    background-color: #262626;
-    border: none;
-    border-radius: 0.3rem;
-    color: #BFBFBF;
-    font-family: 'NTR', sans-serif;
-    font-size: 1rem;
-    padding: 0.2rem 2rem 0 2rem;
-}
-
-.searchbar::placeholder {
-  color: #BFBFBF;
-  opacity: 1;
-}
-
-
-.magnifier {
-    position: absolute;
-    height: 0.8rem;
-    top: 0.75rem;
-    left: 0.7rem;
-}
-
-.sort {
-    position: relative;
-    margin-top: 0.4rem;
-    margin-left: 2.5vw;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
-}
-
-.sort p {
-    margin: 0 0 0 0.2rem;
-    padding: 0;
-}
-
-.browse_container {
-    width: 67vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
 
 .found_game {
     position: relative;
@@ -265,43 +192,6 @@
     color: white;
 }
 
-.show_more {
-    margin-left: 20vw;
-    width: 39.5vw;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.15s linear;
-}
-
-.show_more:hover {
-    color: white;
-}
-
 .hidden {
     display: none !important;
-}
-
-.sorting_method_table {
-    background-color: #262626;
-    border-radius: 0.2rem;
-    width: 12.5rem;
-    position: absolute;
-    top: 2rem;
-    z-index: 4;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-
-.sorting_method_table p {
-    margin: 0.3rem 0.8rem;
-    color: #BFBFBF;
-    transition: color 0.15s linear;
-}
-
-.sorting_method_table p:hover {
-    color: white;
 }

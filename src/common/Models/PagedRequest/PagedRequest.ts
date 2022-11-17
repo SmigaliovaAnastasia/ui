@@ -1,7 +1,7 @@
 import { Filter } from './Filter';
 import { SortingMethod } from './SortingMethod';
 
-export interface PagedRequest {
+export type PagedRequest = {
   pageIndex: number;
   pageSize: number;
   sortingMethod: SortingMethod;

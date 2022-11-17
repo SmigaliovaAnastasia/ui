@@ -1,65 +1,50 @@
 import './Filters.css';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useContext } from 'react';
-import { FilterContext } from '../../common/Contexts/FilterContext';
+import { PagedRequestContext } from '../../common/Contexts/PagedRequestContext';
+import { FilterForFilterBarModel } from '../../common/Models/FilterBarModels/FilterForFilterBarModel';
 
-export function FilterComponent(props : {name : string}) {
-  const filter = useRef<HTMLDivElement>(null);
-  const arrow = useRef<HTMLImageElement>(null);
-  const {filterss, setFilters} = useContext(FilterContext);
-
-  function handleclick() {
-    if(filter.current !== null && arrow.current !== null)
-    {
-      if(filter.current.className === "hidden")
-      {
-        filter.current.className = "";
-        arrow.current.style.transform = "rotate(180deg)"
-      }
-      else
-      {
-        filter.current.className = "hidden";
-        arrow.current.style.transform = "rotate(0deg)"
-      }
-    }
-  }
+export function FilterComponent(props : {filterModel : FilterForFilterBarModel}) {
 
   const filterOption = useRef<HTMLDivElement>(null);
-  
+  const {state, dispatch} = useContext(PagedRequestContext);
+
   function handleFilterClick() 
   {
-    if(filterOption.current != null)
+    props.filterModel.filters.map(f => 
+      dispatch({ 
+        type: "setFilter", 
+        payload: { filter: f, multipleChoice: props.filterModel.multipleChoice }
+      })
+    );
+  }
+
+  useEffect(() => {
+    if(filterOption.current)
     {
-      let newFilters = [...filterss];
-      let index = newFilters.indexOf(props.name);
-      if(index !== -1)
+      let isIncluded = true;
+      props.filterModel.filters.map(f => {
+        if(!state.filters.includes(f))
+        {
+          isIncluded = false;
+        }
+      });
+      if(isIncluded)
       {
-        filterOption.current.style.backgroundColor = "transparent";
-        newFilters.splice(index, 1);
+        filterOption.current.className = "filterMask selected";
       }
       else
       {
-        newFilters.push(props.name);
-        filterOption.current.style.backgroundColor = "#242424";
+        filterOption.current.className = "filterMask notSelected";
       }
-      setFilters(newFilters); 
     }
-  }
+  }, [state.filters] );
   
 
   return (
-      <div className = "filterUnit">
-        <div className="filter">
-          <p  className="clickable" onClick={handleclick}>{props.name}</p>
-          <img alt="" className="filtericons" ref={arrow} src="./img/down.svg"/>
-        </div>
-        <div className="hidden" ref={filter}>
           <div className="filter" >
-            <div className='filterMask' ref={filterOption}></div>
-            <p  className="clickable" onClick={handleFilterClick}>Insert {props.name}</p>
+            <div className='filterMask notSelected' ref={filterOption}></div>
+            <p  className="clickable" onClick={handleFilterClick}>{props.filterModel.text}</p>
           </div>
-        </div>
-        <div className="line"></div>
-      </div>
   );
 }

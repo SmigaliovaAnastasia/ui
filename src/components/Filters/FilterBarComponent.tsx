@@ -1,22 +1,23 @@
 import React, { ReactElement, useContext } from 'react';
 import './Filters.css';
-import { FilterComponent } from './FilterComponent';
+import { FilterBarModel } from '../../common/Models/FilterBarModels/FilterBarModel';
+import { FilterCategoryComponent } from './FilterCategoryComponent';
+import { PagedRequestContext } from '../../common/Contexts/PagedRequestContext';
 
-export function FilterBarComponent() {
+export function FilterBarComponent(props : {filterBarModel: FilterBarModel}) {
 
-  var filters : ReactElement[] = [];
-  filters.push(<FilterComponent key="players" name="Players"></FilterComponent>);
-  filters.push(<FilterComponent key="age" name="Age"></FilterComponent>);
-  filters.push(<FilterComponent key="playingtime" name="Playing time"></FilterComponent>);
+  const {state, dispatch} = useContext(PagedRequestContext);
+  var filterCategories = props.filterBarModel.filterCategories.map(c => {return <FilterCategoryComponent key={c.name} filterCategoryModel={c}></FilterCategoryComponent>});
 
   return (
     <div className="filters">
       <div className="head">
           <p>Filters</p>
-          <img className="filtericons" src="./img/clear.svg"/>
+          <img className="filtericons" onClick={() => dispatch({ type : "resetFilters", payload : props.filterBarModel.remainingFilter })} src="./img/clear.svg"/>
       </div>
       <div className="line"></div>
-      {filters}
+
+      {filterCategories}
     </div>
   );
 }

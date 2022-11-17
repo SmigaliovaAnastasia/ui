@@ -1,5 +1,5 @@
-import { PagedRequest } from "./PagedRequest"
-import { Filter } from "./Filter";
+import { PagedRequest } from "../Models/PagedRequest/PagedRequest"
+import { Filter } from "../Models/PagedRequest/Filter";
 
 export const defaultPagedRequest : PagedRequest =
 {
