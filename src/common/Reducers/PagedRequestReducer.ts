@@ -52,6 +52,8 @@ export const pagedRequestReducer = (state : PagedRequest, action : PagedRequestA
       };
     case 'resetFilters':
       return { ...state, filters: resetFilters([...state.filters], action.payload) };
+    case 'forceUpdate': 
+      return { ...state, forceUpdate: !(state.forceUpdate) };
     default:
       return state;
   }

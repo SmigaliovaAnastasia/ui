@@ -1,0 +1,23 @@
+.collection_edit {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  transition: 0.5s linear !important;
+  z-index: 5;
+}
+
+.collection_delete {
+  position: absolute;
+  top: 2.7rem;
+  right: 0.7rem;
+  transition: 0.5s linear !important;
+  z-index: 5;
+}
+
+.collection_delete, .collection_edit {
+  color: #BFBFBF;
+}
+
+.collection_delete:hover, .collection_edit:hover {
+  color: white;
+}

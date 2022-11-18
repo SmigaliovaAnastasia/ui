@@ -8,6 +8,8 @@ import { Home } from "../../pages/Home/Home"
 import DialogDefault from "../../components/DialogWindows/DialogDefault";
 import { Login } from "../../pages/Login/Login";
 import { Collections } from "../../pages/Collections/Collections";
+import { CreateCollection } from "../../pages/Collections/CreateCollection";
+import { UpdateCollection } from "../../pages/Collections/UpdateCollection";
 
 export function Container(){
   
@@ -17,11 +19,13 @@ export function Container(){
             <Route path="/" element = {<Home/>}></Route>
             <Route path="/browse" element = {<Browse/>}></Route>
             <Route path="/browse/:id" element = {<Game/>}></Route>
-            <Route path="/create" element = {<CreateGame/>}></Route>
+            <Route path="/createGame" element = {<CreateGame/>}></Route>
             <Route path="/login" element = {<Login/>}></Route>
             <Route path="/collections" element = {<Collections/>}></Route>
+            <Route path="/createCollection" element = {<CreateCollection/>}></Route>
+            <Route path="/updateCollection/:id" element = {<UpdateCollection/>}></Route>
           </Routes>
-          <DialogDefault text={"sssss"} proceed={() => console.log("ss")}></DialogDefault>
+          <DialogDefault text={""} proceed={() => {}}></DialogDefault>
       </div>
   );
 };

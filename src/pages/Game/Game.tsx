@@ -14,7 +14,7 @@ export function Game(){
   useEffect(() => {
     let data = gameservice.getGameById(String(params.id));
     data.then((game) => setGame(<GameComponent key={game.id} game = {game}/>));
-  });
+  }, []);
 
   return (
     <div>

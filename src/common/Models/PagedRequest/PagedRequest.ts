@@ -6,4 +6,5 @@ export type PagedRequest = {
   pageSize: number;
   sortingMethod: SortingMethod;
   filters: Array<Filter>;
+  forceUpdate: boolean;
 }
