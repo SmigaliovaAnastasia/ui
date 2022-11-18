@@ -4,7 +4,7 @@ import { Filter } from "../Models/PagedRequest/Filter";
 export const defaultPagedRequest : PagedRequest =
 {
   pageIndex : 1,
-  pageSize : 10,
+  pageSize : 3,
   sortingMethod : { value : "id"},
   filters : new Array<Filter>,
 }

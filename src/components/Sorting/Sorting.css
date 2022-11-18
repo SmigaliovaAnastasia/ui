@@ -9,3 +9,14 @@
 #demo-simple-select-standard:focus{
   background-color: #121212!important;
 }
+
+.sortingComponentContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.sortingComponentContainer p {
+  color: #BFBFBF!important;
+}

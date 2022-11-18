@@ -18,7 +18,7 @@ export function StyledCardComponent(props : {text : string, link : string, img :
     <StyledCard className="card">
       <CardMedia className="home_icons" image={props.img} />
       <CardActions>
-        <Link to={props.link}>{props.text}</Link>
+        <Link className="homeLink" to={props.link}>{props.text}</Link>
       </CardActions>
     </StyledCard>
   );

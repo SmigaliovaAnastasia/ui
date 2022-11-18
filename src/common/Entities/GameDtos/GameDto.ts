@@ -2,7 +2,7 @@ import { ComplexityLevelDto } from "./ComplexityLevelDto";
 import { GameSeriesDto } from "./GameSeriesDto";
 import { GenreDto } from "./GenreDto";
 
-export interface GameDto {
+export type GameDto = {
   id : string,
   name : string, 
   description : string,

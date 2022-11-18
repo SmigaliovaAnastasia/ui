@@ -1,4 +1,4 @@
-export interface GenreDto {
+export type GenreDto = {
   id : string;
   name: string;
 }

@@ -25,6 +25,7 @@ export function Home() {
               <p className="homeImageText">You’ve come a long way, I imagine. You seem tired and cold. 
                 Maybe it’s time to sit by the fire and enjoy the company 
                 of other travelers in a board game of your choice? </p>
+              <div className="homeLogo" ></div>
             </div>
           </StyledCard>
       </Grid>
@@ -37,16 +38,16 @@ export function Home() {
             <StyledCardComponent text='Manage Collections' link='/' img='./img/mcollections.svg'></StyledCardComponent>
           </Grid>
           <Grid item xs={12} md={6}>
-            <StyledCardComponent text='Find Shops' link='/' img='./img/fshops.svg'></StyledCardComponent>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <StyledCardComponent text='Find Communities' link='/' img='./img/fcommunities.svg'></StyledCardComponent>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <StyledCardComponent text='Join Clubs' link='/' img='./img/jclubs.svg'></StyledCardComponent>
-          </Grid>
-          <Grid item xs={12} md={6}>
             <StyledCardComponent text='Rate Games' link='/' img='./img/rgames.svg'></StyledCardComponent>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <StyledCardComponent text='FAQs' link='/' img='./img/faq.svg'></StyledCardComponent>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <StyledCardComponent text='Manage Profile' link='/' img='./img/user.svg'></StyledCardComponent>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <StyledCardComponent text='Settings' link='/' img='./img/settings.svg'></StyledCardComponent>
           </Grid>
         </Grid>
       </Grid>

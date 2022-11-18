@@ -1,0 +1,141 @@
+.collections_browse_container {
+  width: 84vw;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collections_container {
+  width: 84vw;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchbar_container {
+  max-width: 19.125vw;
+  overflow: hidden;
+  border-radius: 0.3rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.searchbar {
+  width: 19.125vw;
+  background-color: #262626;
+  border: none;
+  border-radius: 0.3rem;
+  color: #BFBFBF;
+  font-family: 'NTR', sans-serif;
+  font-size: 1rem;
+  padding: 0.2rem 2rem 0 2rem;
+}
+
+.searchbar::placeholder {
+color: #BFBFBF;
+opacity: 1;
+}
+
+.magnifier {
+  position: absolute;
+  height: 0.8rem;
+  top: 0.75rem;
+  left: 0.7rem;
+}
+
+.clickable {
+  cursor: pointer !important;
+}
+
+.filtericons {
+  position: relative;
+  bottom: 0.1rem;
+  margin-left: 0.5rem;
+  width: 0.6rem;
+  cursor: pointer;
+  transition: transform 0.2s linear;
+}
+
+.collections {
+  margin-top: 2rem;
+  width: 86.5vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.collection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 19.125vw;
+  margin-right: 2.5vw;
+  margin-bottom: 3vw;
+  cursor: pointer;
+}
+
+.collection:hover .mask_collection {
+  opacity: 0.3;
+}
+
+.collection_image {
+  width: 100%;
+  height: 17vw;
+  background-color: #262626;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0.4rem;
+}
+
+.mask_collection {
+  width: 100%;
+  height: 17vw;
+  background-color: #262626;
+  position: absolute;
+  z-index: 2;
+  border-radius: 0.4rem;
+  opacity: 0;
+  cursor: pointer;
+  transition: 0.15s linear;
+}
+
+.collection p {
+  color: #BFBFBF;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.collection_name {
+  font-size: 1rem !important;
+  line-height: 1rem !important;
+  margin: 2rem 0 0.8rem 0 !important;
+}
+
+.collection_details {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.collections_pagination {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

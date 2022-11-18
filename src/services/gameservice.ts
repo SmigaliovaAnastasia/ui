@@ -14,7 +14,6 @@ export class GameService {
   public async getGameById(id : string) : Promise<GameDto> {
     const response = await fetch(`${this.apiUrl}/Games/${id}`);
     const data = await response.json();
-    console.log(data);
     if (!response.ok) {
       const error = data || response.statusText;
       return Promise.reject(error);
@@ -26,7 +25,6 @@ export class GameService {
 
 
   public async GetPagedGames(pagedRequest : PagedRequest) : Promise<PagedResult<GameListDto>> {
-    console.log(pagedRequest);
     const response = await fetch(`${this.apiUrl}/Games/paginated`, {
       method: 'POST',
       headers: {
@@ -36,7 +34,6 @@ export class GameService {
     });
 
     const data = await response.json();
-    console.log(data);
     if (!response.ok) {
       const error = data || response.statusText;
       return Promise.reject(error);

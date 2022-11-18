@@ -45,6 +45,7 @@ export function CreateGame(){
       <Grid item xs={6}>
       <Controller
       name="name"
+      defaultValue={''}
       control={control}
       render={({ field }) => <StyledTextField label="Name" helperText={errors?.name && String(errors.name.message)} placeholder="Name" variant="filled" type="text" {...field} />}
       />
@@ -53,6 +54,7 @@ export function CreateGame(){
       <Grid item xs={6}>
       <Controller
         name="playingTime"
+        defaultValue={''}
         control={control}
         render={({ field }) => <StyledTextField label="Playing time" helperText={errors?.playingTime && String(errors.playingTime.message)} placeholder="Playing time (ex.) 1-2 hours" variant="filled" type="text" {...field} />}
       />
@@ -61,6 +63,7 @@ export function CreateGame(){
       <Grid item xs={12}>
       <Controller
         name="description"
+        defaultValue={''}
         control={control}
         render={({ field }) => <StyledTextField label="Description" helperText={errors?.description && String(errors.description.message)} placeholder="Description" variant="filled" multiline={true} type="text" {...field} />}
       />
@@ -69,6 +72,7 @@ export function CreateGame(){
       <Grid item xs={12}>
       <Controller
         name="rules"
+        defaultValue={''}
         control={control}
         render={({ field }) => <StyledTextField label="Rules" helperText={errors?.rules && String(errors.rules.message)} placeholder="Rules" variant="filled" multiline={true} type="text" {...field} />}
       />
@@ -77,6 +81,7 @@ export function CreateGame(){
       <Grid item xs={6}>
       <Controller
         name="minNumOfPlayers"
+        defaultValue={''}
         control={control}
         render={({ field }) => <StyledTextField label="Min number of players" helperText={errors?.minNumOfPlayers && String(errors.minNumOfPlayers.message)} placeholder="Min number of players" variant="filled" type="number" {...field} />}
       />
@@ -85,6 +90,7 @@ export function CreateGame(){
       <Grid item xs={6}>
       <Controller
         name="maxNumOfPlayers"
+        defaultValue={''}
         control={control}
         render={({ field }) => <StyledTextField label="Max number of players"  helperText={errors?.maxNumOfPlayers && String(errors.maxNumOfPlayers.message)} placeholder="Max number of players" variant="filled" type="number" {...field} />}
       />
@@ -93,6 +99,7 @@ export function CreateGame(){
       <Grid item xs={6}>
       <Controller
         name="minPalyerAge"
+        defaultValue={''}
         control={control}
         render={({ field }) => <StyledTextField label="Min player age"  helperText={errors?.minPalyerAge && String(errors.minPalyerAge.message)} placeholder="Min player age" variant="filled" type="number" {...field} />}
       />
@@ -101,6 +108,7 @@ export function CreateGame(){
       <Grid item xs={6}>
       <Controller
         name="releaseDate"
+        defaultValue={''}
         control={control}
         render={({ field }) => <StyledTextField label="releaseDate" defaultValue="1998-07-14" helperText={errors?.releaseDate && String(errors.releaseDate.message)} variant="filled" type="date" {...field} />}
       />

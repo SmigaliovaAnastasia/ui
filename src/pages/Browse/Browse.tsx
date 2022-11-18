@@ -8,16 +8,18 @@ import { defaultPagedRequest } from "../../common/Constants/DefaultPagedRequest"
 import { Pagination } from "@mui/material";
 import { pagedRequestReducer } from "../../common/Reducers/PagedRequestReducer";
 import { PagedRequestContext } from "../../common/Contexts/PagedRequestContext";
-import { gameFilterBarModel } from "../../common/Constants/GamePagedRequest/GameFilterBar";
+import { gameFilterBarModel } from "../../common/Constants/GameFilters/GameFilterBar";
 import { GameListComponent } from "../../components/Games/GameListComponent";
 import { PagedResult } from "../../common/Models/PagedRequest/PagedResult";
 import { GameListDto } from "../../common/Entities/GameDtos/GameListDto";
+import { gameSortingList } from "../../common/Constants/GameSorting/GameSortingList";
 
 export function Browse(){
   
   const gameservice = new GameService;
 
   const [games, setGames] = useState<JSX.Element[]>();
+  const [totalPages, setTotalPages] = useState(1);
 
   const [state, dispatch] = useReducer(pagedRequestReducer, defaultPagedRequest);
   
@@ -25,8 +27,10 @@ export function Browse(){
   useEffect(() => {
     let data = gameservice.GetPagedGames(state);
     data.then((pagedResult : PagedResult<GameListDto>) =>  
-    setGames(pagedResult.items.map((g) => 
-    {return <GameListComponent key={g.id} game = {g}/>})));
+    {
+      setTotalPages(Math.ceil(pagedResult.total/pagedResult.pageSize));
+      setGames(pagedResult.items.map((g) => {return <GameListComponent key={g.id} game = {g}/>}));
+    });
   }, [state]);
   
   function handleNameChange(name: string) {
@@ -55,12 +59,11 @@ export function Browse(){
                   <img alt="" className="magnifier" src="./img/Magnifier.svg"/>
                 </div>
               </div>
-                <p>Sort by: </p>
-                <SortingComponent></SortingComponent>
+                <SortingComponent sortingList={gameSortingList}></SortingComponent>
             </div>
             {games}
             <div className="pagination">
-              <Pagination count={10} onChange={(e, value) => dispatch({type: "setPage", payload: value})}/>
+              <Pagination count={totalPages} onChange={(e, value) => dispatch({type: "setPage", payload: value})}/>
             </div>
           </div>
           <FilterBarComponent filterBarModel={gameFilterBarModel}></FilterBarComponent>

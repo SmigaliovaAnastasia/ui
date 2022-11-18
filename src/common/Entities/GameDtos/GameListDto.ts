@@ -1,4 +1,4 @@
-export interface GameListDto {
+export type GameListDto = {
   id : string;
   name: string;
   description: string;

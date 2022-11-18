@@ -2,30 +2,35 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './Sorting.css'
+import { SortingListModel } from '../../common/Models/SortingListModels/SortingListModel';
+import { PagedRequestContext } from '../../common/Contexts/PagedRequestContext';
 
-export function SortingComponent() {
-  const [age, setAge] = useState('');
+export function SortingComponent(props : { sortingList: SortingListModel }) {
+  let items = props.sortingList.sortings.map(s => {return <MenuItem key={s.value} value={s.value}>{s.sortingName}</MenuItem>})
+
+  const {state, dispatch} = useContext(PagedRequestContext);
+  const [sorting, setSorting] = useState<string>("");
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+    setSorting(event.target.value);
+    dispatch({ type: "setSorting", payload: event.target.value })
   };
 
+
   return (
-    <div>
+    <div className="sortingComponentContainer">
+      <p>Sort by: </p>
       <FormControl variant="standard" className="sortingTable">
         <Select className="sortingSelect"
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
-          value={age}
+          value={sorting}
           onChange={handleChange}
-          label="Age"
+          label="Sorting"
         >
-          <MenuItem value={10}>Name: A-Z</MenuItem>
-          <MenuItem value={20}>Name: Z-A</MenuItem>
-          <MenuItem value={30}>Rating: High to Low</MenuItem>
-          <MenuItem value={40}>Rating: Low to High</MenuItem>
+          {items}
         </Select>
       </FormControl>
     </div>

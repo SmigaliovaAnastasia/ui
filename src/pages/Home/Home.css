@@ -11,9 +11,10 @@
 }
 
 .home_icons {
-  width: 4rem;
-  height: 4rem;
-  margin: 1.7rem 0 0.5rem 0;
+  width: 6vw;
+  height: 4vw;
+  margin-top: 2.5vw;
+  margin-bottom: 1vw;
   background-size: contain!important;
 }
 
@@ -36,10 +37,23 @@
 
 .homeImageMask p {
   font-size: large;
-  margin-bottom: 5vw;
+  margin-bottom: 0.5rem;
 }
 
 .homeImageMask h2 {
   color: white;
   margin: 0;
+}
+
+.homeLink {
+  margin-bottom: 0.5vw;
+}
+
+.homeLogo {
+  width: 3rem;
+  height: 2.5rem;
+  background-image: url("../../../public/img/logo.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-bottom: 2vw;
 }
