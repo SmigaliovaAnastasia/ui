@@ -10,6 +10,7 @@ import { Login } from "../../pages/Login/Login";
 import { Collections } from "../../pages/Collections/Collections";
 import { CreateCollection } from "../../pages/Collections/CreateCollection";
 import { UpdateCollection } from "../../pages/Collections/UpdateCollection";
+import { CollectionsGames } from "../../pages/CollectionsGames/CollectionsGames";
 
 export function Container(){
   
@@ -24,6 +25,7 @@ export function Container(){
             <Route path="/collections" element = {<Collections/>}></Route>
             <Route path="/createCollection" element = {<CreateCollection/>}></Route>
             <Route path="/updateCollection/:id" element = {<UpdateCollection/>}></Route>
+            <Route path="/collectionGames/:id" element = {<CollectionsGames/>}></Route>
           </Routes>
           <DialogDefault text={""} proceed={() => {}}></DialogDefault>
       </div>

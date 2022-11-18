@@ -13,7 +13,7 @@ export function FilterBarComponent(props : {filterBarModel: FilterBarModel}) {
     <div className="filters">
       <div className="head">
           <p>Filters</p>
-          <img className="filtericons" onClick={() => dispatch({ type : "resetFilters", payload : props.filterBarModel.remainingFilter })} src="./img/clear.svg"/>
+          <img className="filtericons" onClick={() => dispatch({ type : "resetFilters", payload : props.filterBarModel.remainingFilter })} src="/img/clear.svg"/>
       </div>
       <div className="line"></div>
 

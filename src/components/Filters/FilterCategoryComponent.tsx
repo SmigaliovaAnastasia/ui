@@ -28,7 +28,7 @@ export function FilterCategoryComponent(props : {filterCategoryModel : FilterCat
       <div className = "filterUnit">
         <div className="filter">
           <p  className="clickable" onClick={handleclick}>{props.filterCategoryModel.name}</p>
-          <img alt="" className="filtericons" ref={arrow} src="./img/down.svg"/>
+          <img alt="" className="filtericons" ref={arrow} src="/img/down.svg"/>
         </div>
         <div className="hidden" ref={filterCategory}>
           {filters}

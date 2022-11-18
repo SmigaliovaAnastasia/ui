@@ -21,7 +21,7 @@ export function CollectionListComponent(props: {collection: CollectionDto}) {
   return (
     <div>
     <div className="collection">
-      <Link to={'/'} className="mask_collection"></Link>
+      <Link to={`/collectionGames/${props.collection.id}`} className="mask_collection"></Link>
       <Link to={`/updateCollection/${props.collection.id}`}><ModeEditOutlineOutlinedIcon className="collection_edit"/></Link>
       <div onClick={handleClick}><DeleteOutlineOutlinedIcon className="collection_delete"/></div>
       <div className="collection_image" style={{backgroundImage: `url(${props.collection.imageUrl})`}}></div>
