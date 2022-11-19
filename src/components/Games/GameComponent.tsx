@@ -14,11 +14,11 @@ export function GameComponent(props: { game: GameDto }) {
 
     const { user, setUser } = useContext(UserContext);
     const adminMode = user?.userRoles.includes(Roles.Admin) ?
-    [   <div className='admin_game_options'>
-        <Link to={`/`}><ModeEditOutlineOutlinedIcon className="game_edit" /></Link>
-        <div><DeleteOutlineOutlinedIcon className="game_delete" /></div>
+        [<div className='admin_game_options'>
+            <Link to={`/`}><ModeEditOutlineOutlinedIcon className="game_edit" /></Link>
+            <div><DeleteOutlineOutlinedIcon className="game_delete" /></div>
         </div>
-    ] : [];
+        ] : [];
 
     return (
         <div>
@@ -65,7 +65,7 @@ export function GameComponent(props: { game: GameDto }) {
                             </div>
 
                             <div className="description_line">
-                                <p className="description_name" style={{color: '#BFBFBF'}}>Description: {props.game.description}</p>
+                                <p className="description_name" style={{ color: '#BFBFBF' }}>Description: {props.game.description}</p>
                             </div>
                         </div>
                     </div>
@@ -77,6 +77,17 @@ export function GameComponent(props: { game: GameDto }) {
                         </div>
                         {adminMode}
                     </div>
+                </div>
+            </div>
+
+            <div className="main_container">
+                <div className="tabs">
+                    <div className="tab active">Reviews</div>
+                    <div className="tab">Rules</div>
+                </div>
+
+                <div className="tab_content">
+                    <p></p>
                 </div>
             </div>
         </div>

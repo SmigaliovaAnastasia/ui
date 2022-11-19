@@ -9,3 +9,13 @@ export const defaultPagedRequest: PagedRequest =
   filters: new Array<Filter>,
   forceUpdate: false
 }
+
+export const defaultPagedRequestWithFilter = (filters: Filter[]) : PagedRequest => {
+  return {
+    pageIndex: 1,
+    pageSize: 10,
+    sortingMethod: { value: "id" },
+    filters: filters,
+    forceUpdate: false
+  }
+}

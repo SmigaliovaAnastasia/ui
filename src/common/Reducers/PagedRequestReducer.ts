@@ -28,9 +28,9 @@ function setFilter(filters: Filter[], filter: Filter, multipleChoice: boolean): 
   }
 }
 
-function resetFilters(filters: Filter[], remainingFilterName: string) {
-  let remainingFilter = filters.find(f => f.filterProperty === remainingFilterName);
-  return remainingFilter ? [remainingFilter] : [];
+function resetFilters(filters: Filter[], remainingFiltersName: string[]) {
+  let remainingFilters = filters.filter(f => remainingFiltersName.includes(f.filterProperty));
+  return remainingFilters ? remainingFilters : [];
 }
 
 export const pagedRequestReducer = (state: PagedRequest, action: PagedRequestAction): PagedRequest => {
@@ -50,6 +50,8 @@ export const pagedRequestReducer = (state: PagedRequest, action: PagedRequestAct
       return { ...state, filters: resetFilters([...state.filters], action.payload) };
     case 'forceUpdate':
       return { ...state, forceUpdate: !(state.forceUpdate) };
+    case 'reset':
+      return { ...defaultPagedRequest };
     default:
       return state;
   }

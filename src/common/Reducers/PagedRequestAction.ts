@@ -5,5 +5,6 @@ export type PagedRequestAction =
   | { type: 'setPageSize'; payload: number }
   | { type: 'setSorting'; payload: string }
   | { type: 'setFilter'; payload: { filter: Filter; multipleChoice: boolean } }
-  | { type: 'resetFilters'; payload: string }
-  | { type: 'forceUpdate' };
+  | { type: 'resetFilters'; payload: string[] }
+  | { type: 'forceUpdate' }
+  | { type: 'reset' };

@@ -217,3 +217,57 @@
   display: flex;
   flex-direction: row;
 }
+
+
+.tabs {
+  width: 67vw;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: #BFBFBF;
+  font-size: 1.3rem;
+  line-height: 1.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  padding: 0 0.4rem;
+  cursor: pointer;
+  margin-right: 1.6rem;
+  transition: 0.15s linear;
+  border: none;
+}
+
+.tab:hover {
+  color: white;
+}
+
+.active {
+  color: white;
+  border-bottom: 3px solid #7135F2;
+}
+
+.tab_content {
+  width: 62vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 4rem;
+}
+
+.tab_content p {
+  font-size: 1rem;
+  line-height: 1.4rem;
+  margin: 0.5rem 0;
+}
+
+.main_container {
+  width: 84vw;
+  color: #BFBFBF;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}

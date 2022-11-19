@@ -1,6 +1,6 @@
 import { FilterCategoryModel } from "./FilterCategoryModel";
 
 export type FilterBarModel = {
-  remainingFilter: string;
+  remainingFilters: string[];
   filterCategories: Array<FilterCategoryModel>;
 }
