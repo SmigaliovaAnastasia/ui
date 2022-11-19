@@ -3,6 +3,9 @@ import { environment } from "../config/environment/environment";
 import { PagedRequest } from "../common/Models/PagedRequest/PagedRequest";
 import { PagedResult } from "../common/Models/PagedRequest/PagedResult";
 import { FilterSharp } from "@mui/icons-material";
+import { CollectionGameCreateDto } from "../common/Entities/CollectionGameDtos/CollectionGameCreateDto";
+import { GetJwt } from "./Utils/GetJwt";
+import { CollectionGameUpdateDto } from "../common/Entities/CollectionGameDtos/CollectionGameUpdateDto";
 
 export class CollectionsGamesService {
   private apiUrl: string;
@@ -12,7 +15,11 @@ export class CollectionsGamesService {
 
 
   public async getCollectionGameById(id: string): Promise<CollectionGameDto> {
-    const response = await fetch(`${this.apiUrl}/CollectionsGames/${id}`);
+    let jwt = GetJwt();
+    const response = await fetch(`${this.apiUrl}/CollectionsGames/${id}`, {
+      method: 'GET',
+      headers: jwt,
+    });
     const data = await response.json();
     if (!response.ok) {
       const error = data || response.statusText;
@@ -25,11 +32,10 @@ export class CollectionsGamesService {
 
 
   public async GetPagedCollectionsGames(pagedRequest: PagedRequest): Promise<PagedResult<CollectionGameDto>> {
+    let jwt = GetJwt();
     const response = await fetch(`${this.apiUrl}/CollectionsGames/paginated`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: jwt,
       body: JSON.stringify(pagedRequest)
     });
 
@@ -44,12 +50,11 @@ export class CollectionsGamesService {
   }
 
 
-  public async AddCollectionGame(game: CollectionGameDto) {
-    /*const response = await fetch(`${this.apiUrl}/Games/`, {
+  public async AddCollectionGame(game: CollectionGameCreateDto) {
+    let jwt = GetJwt();
+    const response = await fetch(`${this.apiUrl}/CollectionsGames/`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: jwt,
       body: JSON.stringify(game) 
     });
 
@@ -61,6 +66,40 @@ export class CollectionsGamesService {
     else {
       return Promise.resolve(data);
     }
-  */
+  }
+
+  public async UpdateCollectionGame(id: string, game: CollectionGameUpdateDto) {
+    let jwt = GetJwt();
+    const response = await fetch(`${this.apiUrl}/CollectionsGames/${id}`, {
+      method: 'PUT',
+      headers: jwt,
+      body: JSON.stringify(game) 
+    });
+
+    const data = await response;
+    if (!response.ok) {
+      const error = data || response.statusText;
+      return Promise.reject(error);
+    }
+    else {
+      return Promise.resolve();
+    }
+  }
+
+  public async DeleteCollectionGame(id: string) {
+    let jwt = GetJwt();
+    const response = await fetch(`${this.apiUrl}/CollectionsGames/${id}`, {
+      method: 'DELETE',
+      headers: jwt,
+    });
+
+    const data = await response;
+    if (!response.ok) {
+      const error = data || response.statusText;
+      return Promise.reject(error);
+    }
+    else {
+      return Promise.resolve();
+    }
   }
 }

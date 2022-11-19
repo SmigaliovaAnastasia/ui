@@ -16,7 +16,7 @@ import { gameSortingList } from "../../common/Constants/GameSorting/GameSortingL
 import { CollectionsGamesService } from "../../services/CollectionsGamesService";
 import { CollectionGameDto } from "../../common/Entities/CollectionGameDtos/CollectionGameDto";
 import { CollectionGameComponent } from "../../components/Collections/CollectionGameComponent";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import './CollectionsGames.css'
 import { isPropertySignature } from "typescript";
 import { CollectionDescriptionComponent } from "../../components/Collections/CollectionDescriptionComponent";
@@ -47,6 +47,9 @@ export function CollectionsGames() {
   }, []);
 
   useEffect(() => {
+    let request = collectionService.getCollectionById(String(params.id));
+    request.then(d => setCollectionDescription(<CollectionDescriptionComponent collection={d} />))
+
     let data = collectionsGameservice.GetPagedCollectionsGames(state);
     data.then((pagedResult: PagedResult<CollectionGameDto>) => {
       setTotalPages(Math.ceil(pagedResult.total / pagedResult.pageSize));
@@ -85,6 +88,10 @@ export function CollectionsGames() {
             <SortingComponent sortingList={gameSortingList}></SortingComponent>
           </div>
           <div className="collectionGamesContainer">
+            <div className="collection_game">
+              <Link to={`/`} className="mask_collection_game"></Link>
+              <div className="collection_game_image" style={{ backgroundImage: 'url(/img/add.svg)', backgroundSize: "20%" }}></div>
+            </div>
             {games}
           </div>
           <div className="pagination">
