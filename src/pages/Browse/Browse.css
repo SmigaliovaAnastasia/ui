@@ -5,19 +5,19 @@
 }
 
 .browse {
-width: 84vw;
-color: #BFBFBF;
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-justify-content: flex-start;
+  width: 84vw;
+  color: #BFBFBF;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .header {
-font-size: 1.5rem;
-color: #BFBFBF;
-margin-left: 0.3rem;
-text-align: start;
+  font-size: 1.5rem;
+  color: #BFBFBF;
+  margin-left: 0.3rem;
+  text-align: start;
 }
 
 .search {
@@ -78,8 +78,8 @@ text-align: start;
 }
 
 .searchbar::placeholder {
-color: #BFBFBF;
-opacity: 1;
+  color: #BFBFBF;
+  opacity: 1;
 }
 
 

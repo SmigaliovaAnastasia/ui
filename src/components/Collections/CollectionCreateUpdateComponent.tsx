@@ -19,22 +19,22 @@ const schema = yup.object({
   imageUrl: yup.string().max(200),
 }).required();
 
-const StyledTextField = styled(TextField) ({
+const StyledTextField = styled(TextField)({
   backgroundColor: "#262626",
   padding: 0.1,
   width: "100%",
   borderRadius: 10,
-  '& p':{
-    color:'rgb(255, 108, 50)',
+  '& p': {
+    color: 'rgb(255, 108, 50)',
   },
-  '& .MuiFormLabel-root' : {
+  '& .MuiFormLabel-root': {
     color: '#BFBFBF',
   },
 });
 
-export function CollectionCreateUpdateComponent(props: {collection: CollectionCreateDto, onSubmit: (data: any) => void}){
-  
-  const { control, handleSubmit, formState:{ errors } } = useForm({
+export function CollectionCreateUpdateComponent(props: { collection: CollectionCreateDto, onSubmit: (data: any) => void }) {
+
+  const { control, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       name: props.collection.name,
@@ -46,33 +46,33 @@ export function CollectionCreateUpdateComponent(props: {collection: CollectionCr
   return (
     <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
       <Grid container spacing={2} direction="row" justifyContent="center" alignItems="flex-start">
-      <Grid item xs={8}>
-      <Controller
-      name="name"
-      control={control}
-      render={({ field }) => <StyledTextField label="Name" helperText={errors?.name && String(errors.name.message)} placeholder="Name" variant="filled" type="text" {...field} />}
-      />
-      </Grid>
+        <Grid item xs={8}>
+          <Controller
+            name="name"
+            control={control}
+            render={({ field }) => <StyledTextField label="Name" helperText={errors?.name && String(errors.name.message)} placeholder="Name" variant="filled" type="text" {...field} />}
+          />
+        </Grid>
 
-      <Grid item xs={8}>
-      <Controller
-        name="description"
-        control={control}
-        render={({ field }) => <StyledTextField label="Description" helperText={errors?.description && String(errors.description.message)} placeholder="Description" variant="filled" multiline={true} type="text" {...field} />}
-      />
-      </Grid>
+        <Grid item xs={8}>
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => <StyledTextField label="Description" helperText={errors?.description && String(errors.description.message)} placeholder="Description" variant="filled" multiline={true} type="text" {...field} />}
+          />
+        </Grid>
 
-      <Grid item xs={8}>
-      <Controller
-        name="imageUrl"
-        control={control}
-        render={({ field }) => <StyledTextField label="ImageUrl" defaultValue={props.collection.imageUrl}  helperText={errors?.imageUrl && String(errors.imageUrl.message)} placeholder="ImageUrl" variant="filled" multiline={true} type="text" {...field} />}
-      />
-      </Grid>
+        <Grid item xs={8}>
+          <Controller
+            name="imageUrl"
+            control={control}
+            render={({ field }) => <StyledTextField label="ImageUrl" defaultValue={props.collection.imageUrl} helperText={errors?.imageUrl && String(errors.imageUrl.message)} placeholder="ImageUrl" variant="filled" multiline={true} type="text" {...field} />}
+          />
+        </Grid>
 
-      <Grid item xs={6}>
-        <Button type="submit" variant="contained">Submit</Button>
-      </Grid>
+        <Grid item xs={6}>
+          <Button type="submit" variant="contained">Submit</Button>
+        </Grid>
       </Grid>
     </form>
   );

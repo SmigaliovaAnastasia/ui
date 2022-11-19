@@ -5,7 +5,7 @@ import { PagedRequestAction } from "../Reducers/PagedRequestAction";
 
 export type PagedRequestContent = {
   state: PagedRequest;
-  dispatch : React.Dispatch<PagedRequestAction>;
+  dispatch: React.Dispatch<PagedRequestAction>;
 }
 
 export const PagedRequestContext = React.createContext<PagedRequestContent>({ state: defaultPagedRequest, dispatch: () => null });

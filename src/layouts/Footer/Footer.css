@@ -20,7 +20,8 @@
   height: 100%;
 }
 
-.footerColumn a, .footerRightColumn a {
+.footerColumn a,
+.footerRightColumn a {
   font-size: 0.85rem;
   line-height: 150%;
 }

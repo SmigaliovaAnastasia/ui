@@ -12,7 +12,7 @@ const StyledCard = styled(Card)({
   justifyContent: "center"
 });
 
-export function StyledCardComponent(props : {text : string, link : string, img : string}) {
+export function StyledCardComponent(props: { text: string, link: string, img: string }) {
 
   return (
     <StyledCard className="card">

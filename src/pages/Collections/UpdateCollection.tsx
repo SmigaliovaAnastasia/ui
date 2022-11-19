@@ -16,7 +16,7 @@ import { CollectionCreateUpdateComponent } from "../../components/Collections/Co
 import { CollectionDto } from "../../common/Entities/CollectionDtos/CollectionDto";
 import { cp } from "fs";
 
-export function UpdateCollection(){
+export function UpdateCollection() {
 
   const params = useParams();
   const collectionService = new CollectionService();
@@ -26,17 +26,18 @@ export function UpdateCollection(){
     var request = collectionService.getCollectionById(String(params.id));
     request.then(d => {
       setCollectionComponent(
-      <CollectionCreateUpdateComponent collection={{
-          name: d.name, 
-          description: d.description, 
-          imageUrl: d.imageUrl, 
-          applicationUserId: d.applicationUserId 
+        <CollectionCreateUpdateComponent collection={{
+          name: d.name,
+          description: d.description,
+          imageUrl: d.imageUrl,
+          applicationUserId: d.applicationUserId
         }}
-        onSubmit={(data : any) => {
-          collectionService.UpdateCollection(d.id, data);
-        }}
-      />
-  )});
+          onSubmit={(data: any) => {
+            collectionService.UpdateCollection(d.id, data);
+          }}
+        />
+      )
+    });
   }, []);
 
   useEffect(() => {
@@ -47,5 +48,5 @@ export function UpdateCollection(){
     <div>
       {collectionComponent}
     </div>
-    )
+  )
 };

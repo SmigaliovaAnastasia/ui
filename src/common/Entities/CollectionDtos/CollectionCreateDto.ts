@@ -1,6 +1,6 @@
 export type CollectionCreateDto = {
-  name : string,
-  description : string,
-  imageUrl : string,
-  applicationUserId : string,
+  name: string,
+  description: string,
+  imageUrl: string,
+  applicationUserId: string,
 }

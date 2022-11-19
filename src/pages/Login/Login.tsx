@@ -16,32 +16,31 @@ const schema = yup.object({
   password: yup.string().required(),
 }).required();
 
-const StyledTextField = styled(TextField) ({
+const StyledTextField = styled(TextField)({
   backgroundColor: "#262626",
   padding: 0.1,
   width: "100%",
   borderRadius: 10,
-  '& p':{
-    color:'rgb(255, 108, 50)',
+  '& p': {
+    color: 'rgb(255, 108, 50)',
   },
-  '& .MuiFormLabel-root' : {
+  '& .MuiFormLabel-root': {
     color: '#BFBFBF',
   },
 });
 
-export function Login(){
+export function Login() {
   const authenticationService = new AuthenticationService;
   const userService = new UserService;
-  const { control, handleSubmit, formState:{ errors } } = useForm({
+  const { control, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   });
 
-  const {user, setUser} = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
-  const onSubmit = (data : any) => { 
-    const response = authenticationService.Login(data); 
-    response.then(() => 
-    {
+  const onSubmit = (data: any) => {
+    const response = authenticationService.Login(data);
+    response.then(() => {
       const data = userService.Get();
       data.then((d) => setUser(d));
     });
@@ -49,31 +48,31 @@ export function Login(){
 
   return (
     <div className="loginContainer">
-    <div className="loginHeader">Log In</div>
-    <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-      <Grid container spacing={2} direction="column" justifyContent="center" alignItems="center">
-      <Grid item xs={6}>
-      <Controller
-      name="userName"
-      defaultValue={''}
-      control={control}
-      render={({ field }) => <StyledTextField label="userName" helperText={errors?.userName && String(errors.userName.message)} placeholder="UserName" variant="filled" type="text" {...field} />}
-      />
-      </Grid>
-      <Grid item xs={6}>
-      <Controller
-      name="password"
-      defaultValue={''}
-      control={control}
-      render={({ field }) => <StyledTextField label="password" helperText={errors?.password && String(errors.password.message)} placeholder="Password" variant="filled" type="password" {...field} />}
-      />
-      </Grid>
+      <div className="loginHeader">Log In</div>
+      <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+        <Grid container spacing={2} direction="column" justifyContent="center" alignItems="center">
+          <Grid item xs={6}>
+            <Controller
+              name="userName"
+              defaultValue={''}
+              control={control}
+              render={({ field }) => <StyledTextField label="userName" helperText={errors?.userName && String(errors.userName.message)} placeholder="UserName" variant="filled" type="text" {...field} />}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <Controller
+              name="password"
+              defaultValue={''}
+              control={control}
+              render={({ field }) => <StyledTextField label="password" helperText={errors?.password && String(errors.password.message)} placeholder="Password" variant="filled" type="password" {...field} />}
+            />
+          </Grid>
 
-      <Grid item xs={6}>
-        <Button type="submit" variant="contained">Submit</Button>
-      </Grid>
-      </Grid>
-    </form>
+          <Grid item xs={6}>
+            <Button type="submit" variant="contained">Submit</Button>
+          </Grid>
+        </Grid>
+      </form>
     </div>
   );
 };

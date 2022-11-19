@@ -76,10 +76,12 @@
   z-index: 5;
 }
 
-.collection_game_delete, .collection_game_edit {
+.collection_game_delete,
+.collection_game_edit {
   color: #BFBFBF;
 }
 
-.collection_game_delete:hover, .collection_game_edit:hover {
+.collection_game_delete:hover,
+.collection_game_edit:hover {
   color: white;
 }

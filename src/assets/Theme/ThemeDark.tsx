@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 
 export const themeDark = createTheme({
   palette: {
-    mode: 'dark',  
+    mode: 'dark',
     primary: {
       main: '#7135F2',
     },
@@ -10,7 +10,7 @@ export const themeDark = createTheme({
       main: '#BFBFBF',
     },
   },
-  typography: {   
-    fontFamily:'NTR',
+  typography: {
+    fontFamily: 'NTR',
   },
 }); 

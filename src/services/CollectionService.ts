@@ -9,10 +9,10 @@ export class CollectionService {
   private apiUrl: string;
   constructor() {
     this.apiUrl = environment.apiUrl;
-  }; 
+  };
 
 
-  public async getCollectionById(id : string) : Promise<CollectionDto> {
+  public async getCollectionById(id: string): Promise<CollectionDto> {
     let jwt = GetJwt();
 
     const response = await fetch(`${this.apiUrl}/Collections/${id}`, {
@@ -30,12 +30,12 @@ export class CollectionService {
   }
 
 
-  public async GetPagedCollections(pagedRequest : PagedRequest) : Promise<PagedResult<CollectionDto>> {
+  public async GetPagedCollections(pagedRequest: PagedRequest): Promise<PagedResult<CollectionDto>> {
     let jwt = GetJwt();
     const response = await fetch(`${this.apiUrl}/Collections/paginated`, {
       method: 'POST',
       headers: jwt,
-      body: JSON.stringify(pagedRequest) 
+      body: JSON.stringify(pagedRequest)
     });
 
     const data = await response.json();
@@ -48,13 +48,13 @@ export class CollectionService {
     }
   }
 
-  
-  public async AddCollection(collection : CollectionCreateDto) : Promise<CollectionDto> {
+
+  public async AddCollection(collection: CollectionCreateDto): Promise<CollectionDto> {
     let jwt = GetJwt();
     const response = await fetch(`${this.apiUrl}/Collections/`, {
       method: 'POST',
       headers: jwt,
-      body: JSON.stringify(collection) 
+      body: JSON.stringify(collection)
     });
 
     const data = await response.json();
@@ -67,12 +67,12 @@ export class CollectionService {
     }
   }
 
-  public async UpdateCollection(id: string, collection : CollectionCreateDto) {
+  public async UpdateCollection(id: string, collection: CollectionCreateDto) {
     let jwt = GetJwt();
     const response = await fetch(`${this.apiUrl}/Collections/${id}`, {
       method: 'PUT',
       headers: jwt,
-      body: JSON.stringify(collection) 
+      body: JSON.stringify(collection)
     });
 
     const data = await response;

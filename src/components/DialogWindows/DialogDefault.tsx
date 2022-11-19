@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function DialogDefault(props: {text: string, proceed(): void}) {
+export default function DialogDefault(props: { text: string, proceed(): void }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClose = () => {

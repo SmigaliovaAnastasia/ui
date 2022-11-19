@@ -8,10 +8,10 @@ export class GameService {
   private apiUrl: string;
   constructor() {
     this.apiUrl = environment.apiUrl;
-  }; 
+  };
 
 
-  public async getGameById(id : string) : Promise<GameDto> {
+  public async getGameById(id: string): Promise<GameDto> {
     const response = await fetch(`${this.apiUrl}/Games/${id}`);
     const data = await response.json();
     if (!response.ok) {
@@ -24,13 +24,13 @@ export class GameService {
   }
 
 
-  public async GetPagedGames(pagedRequest : PagedRequest) : Promise<PagedResult<GameListDto>> {
+  public async GetPagedGames(pagedRequest: PagedRequest): Promise<PagedResult<GameListDto>> {
     const response = await fetch(`${this.apiUrl}/Games/paginated`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(pagedRequest) 
+      body: JSON.stringify(pagedRequest)
     });
 
     const data = await response.json();
@@ -43,14 +43,14 @@ export class GameService {
     }
   }
 
-  
-  public async AddGame(game : GameListDto) : Promise<GameListDto> {
+
+  public async AddGame(game: GameListDto): Promise<GameListDto> {
     const response = await fetch(`${this.apiUrl}/Games/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(game) 
+      body: JSON.stringify(game)
     });
 
     const data = await response.json();

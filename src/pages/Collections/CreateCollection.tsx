@@ -13,6 +13,7 @@ import { CollectionCreateDto } from "../../common/Entities/CollectionDtos/Collec
 import { useParams } from "react-router-dom";
 import { parseJsonSourceFileConfigFileContent } from "typescript";
 import { CollectionCreateUpdateComponent } from "../../components/Collections/CollectionCreateUpdateComponent";
+import { GetUser } from "../../services/Utils/GetUser";
 
 
 const schema = yup.object({
@@ -21,32 +22,35 @@ const schema = yup.object({
   imageUrl: yup.string().max(200),
 }).required();
 
-const StyledTextField = styled(TextField) ({
+const StyledTextField = styled(TextField)({
   backgroundColor: "#262626",
   padding: 0.1,
   width: "100%",
   borderRadius: 10,
-  '& p':{
-    color:'rgb(255, 108, 50)',
+  '& p': {
+    color: 'rgb(255, 108, 50)',
   },
-  '& .MuiFormLabel-root' : {
+  '& .MuiFormLabel-root': {
     color: '#BFBFBF',
   },
 });
 
-export function CreateCollection(){
+export function CreateCollection() {
 
   const collectionService = new CollectionService();
-  const {user, setUser} = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
-  const onSubmit = (data : any) => {
+  const onSubmit = (data: any) => {
     let dto = data as CollectionCreateDto;
-    dto.applicationUserId = user!.userDto.id;
+    if(user)
+    {
+      dto.applicationUserId = user.userDto.id;
+    }
     collectionService.AddCollection(data);
   };
 
   const emptyCollection = {
-    name : '',
+    name: '',
     description: '',
     imageUrl: '',
     applicationUserId: ''

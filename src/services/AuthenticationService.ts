@@ -4,15 +4,15 @@ export class AuthenticationService {
   private apiUrl: string;
   constructor() {
     this.apiUrl = environment.apiUrl;
-  }; 
-  
-  public async Login(user : object) {
+  };
+
+  public async Login(user: object) {
     const response = await fetch(`${this.apiUrl}/Authentication/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(user) 
+      body: JSON.stringify(user)
     });
 
     const data = await response.json();
@@ -20,17 +20,16 @@ export class AuthenticationService {
       const error = data || response.statusText;
       return Promise.reject(error);
     }
-    
     localStorage.setItem('token', data['token']);
   }
 
-  public async Register(user : object) {
+  public async Register(user: object) {
     const response = await fetch(`${this.apiUrl}/Authentication/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(user) 
+      body: JSON.stringify(user)
     });
 
     const data = await response.json();

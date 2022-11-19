@@ -8,10 +8,10 @@ export class CollectionsGamesService {
   private apiUrl: string;
   constructor() {
     this.apiUrl = environment.apiUrl;
-  }; 
+  };
 
 
-  public async getCollectionGameById(id : string) : Promise<CollectionGameDto> {
+  public async getCollectionGameById(id: string): Promise<CollectionGameDto> {
     const response = await fetch(`${this.apiUrl}/CollectionsGames/${id}`);
     const data = await response.json();
     if (!response.ok) {
@@ -24,31 +24,13 @@ export class CollectionsGamesService {
   }
 
 
-  public async GetPagedCollectionsGames(id : string, pagedRequest : PagedRequest) : Promise<PagedResult<CollectionGameDto>> {
-    
-    let filter = {
-      filterProperty: "collection_id", 
-      filterOperator: '', 
-      value: String(id) 
-    };
-
-    let previous = pagedRequest.filters.filter(f => f.filterProperty === filter.filterProperty);
-    if( previous )
-    {
-      previous.map(x => pagedRequest.filters.splice(pagedRequest.filters.indexOf(x), 1));
-    }
-
-    if(!pagedRequest.filters.includes(filter))
-    {
-      pagedRequest.filters.push(filter);
-    }
-    
+  public async GetPagedCollectionsGames(pagedRequest: PagedRequest): Promise<PagedResult<CollectionGameDto>> {
     const response = await fetch(`${this.apiUrl}/CollectionsGames/paginated`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(pagedRequest) 
+      body: JSON.stringify(pagedRequest)
     });
 
     const data = await response.json();
@@ -61,8 +43,8 @@ export class CollectionsGamesService {
     }
   }
 
-  
-  public async AddCollectionGame(game : CollectionGameDto) {
+
+  public async AddCollectionGame(game: CollectionGameDto) {
     /*const response = await fetch(`${this.apiUrl}/Games/`, {
       method: 'POST',
       headers: {

@@ -7,10 +7,10 @@ import './Sorting.css'
 import { SortingListModel } from '../../common/Models/SortingListModels/SortingListModel';
 import { PagedRequestContext } from '../../common/Contexts/PagedRequestContext';
 
-export function SortingComponent(props : { sortingList: SortingListModel }) {
-  let items = props.sortingList.sortings.map(s => {return <MenuItem key={s.value} value={s.value}>{s.sortingName}</MenuItem>})
+export function SortingComponent(props: { sortingList: SortingListModel }) {
+  let items = props.sortingList.sortings.map(s => { return <MenuItem key={s.value} value={s.value}>{s.sortingName}</MenuItem> })
 
-  const {state, dispatch} = useContext(PagedRequestContext);
+  const { state, dispatch } = useContext(PagedRequestContext);
   const [sorting, setSorting] = useState<string>("");
 
   const handleChange = (event: SelectChangeEvent) => {

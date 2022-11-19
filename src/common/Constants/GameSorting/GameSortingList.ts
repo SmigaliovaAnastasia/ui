@@ -1,21 +1,21 @@
 import { SortingListModel } from "../../Models/SortingListModels/SortingListModel";
 
-export const gameSortingList : SortingListModel = {
-  sortings : [
+export const gameSortingList: SortingListModel = {
+  sortings: [
     {
-      value : "name_asc", 
+      value: "name_asc",
       sortingName: "Name: A-Z"
     },
     {
-      value : "name_desc", 
+      value: "name_desc",
       sortingName: "Name: Z-A"
     },
     {
-      value : "releasedate_asc", 
+      value: "releasedate_asc",
       sortingName: "Release Date: New first"
     },
     {
-      value : "releasedate_desc", 
+      value: "releasedate_desc",
       sortingName: "Release Date: Old first"
     },
   ]

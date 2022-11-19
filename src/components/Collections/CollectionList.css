@@ -14,10 +14,12 @@
   z-index: 5;
 }
 
-.collection_delete, .collection_edit {
+.collection_delete,
+.collection_edit {
   color: #BFBFBF;
 }
 
-.collection_delete:hover, .collection_edit:hover {
+.collection_delete:hover,
+.collection_edit:hover {
   color: white;
 }

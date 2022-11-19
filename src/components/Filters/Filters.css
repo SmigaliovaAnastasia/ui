@@ -18,7 +18,8 @@
   color: white;
 }
 
-.filter, .head{
+.filter,
+.head {
   margin: 0.5rem 0;
   width: 100%;
   display: flex;
@@ -58,7 +59,7 @@
 }
 
 .filter:hover .filterMask {
-  background-color: #202020!important;
+  background-color: #202020 !important;
 }
 
 .filterMask {

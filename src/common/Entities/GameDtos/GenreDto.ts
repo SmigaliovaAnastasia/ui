@@ -1,4 +1,4 @@
 export type GenreDto = {
-  id : string;
+  id: string;
   name: string;
 }

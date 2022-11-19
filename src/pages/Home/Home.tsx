@@ -15,19 +15,19 @@ const StyledCard = styled(Card)({
 });
 
 export function Home() {
-  return(
+  return (
     <Grid container spacing={4}>
       <Grid item xs={12} md={8}>
-          <StyledCard className="home_picture">
-            <CardMedia className="home_picture" image="/img/game1.jpg" />
-            <div className="homeImageMask">
-              <h2 className="homeImageText">Welcome, stranger!</h2>
-              <p className="homeImageText">You’ve come a long way, I imagine. You seem tired and cold. 
-                Maybe it’s time to sit by the fire and enjoy the company 
-                of other travelers in a board game of your choice? </p>
-              <div className="homeLogo" ></div>
-            </div>
-          </StyledCard>
+        <StyledCard className="home_picture">
+          <CardMedia className="home_picture" image="/img/game1.jpg" />
+          <div className="homeImageMask">
+            <h2 className="homeImageText">Welcome, stranger!</h2>
+            <p className="homeImageText">You’ve come a long way, I imagine. You seem tired and cold.
+              Maybe it’s time to sit by the fire and enjoy the company
+              of other travelers in a board game of your choice? </p>
+            <div className="homeLogo" ></div>
+          </div>
+        </StyledCard>
       </Grid>
       <Grid item xs={12} md={4}>
         <Grid container spacing={2}>

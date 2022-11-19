@@ -38,8 +38,8 @@
 }
 
 .searchbar::placeholder {
-color: #BFBFBF;
-opacity: 1;
+  color: #BFBFBF;
+  opacity: 1;
 }
 
 .magnifier {

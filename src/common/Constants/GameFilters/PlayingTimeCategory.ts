@@ -1,6 +1,6 @@
 import { FilterCategoryModel } from "../../Models/FilterBarModels/FilterCategoryModel";
 
-export const playingTimeCategory : FilterCategoryModel = 
+export const playingTimeCategory: FilterCategoryModel =
 {
   name: "Playing time",
   filters: [
