@@ -44,7 +44,7 @@ export function CreateCollection() {
     let dto = data as CollectionCreateDto;
     if(user)
     {
-      dto.applicationUserId = user.userDto.id;
+      dto.applicationUserId = user.userId;
     }
     collectionService.AddCollection(data);
   };

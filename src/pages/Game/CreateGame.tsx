@@ -118,6 +118,17 @@ export function CreateGame() {
           <Button type="submit" variant="contained">Submit</Button>
         </Grid>
       </Grid>
+
+      <Button
+  variant="contained"
+  component="label"
+>
+  Upload File
+  <input
+    type="file"
+    hidden
+  />
+</Button>
     </form>
   );
 };

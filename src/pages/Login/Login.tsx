@@ -10,6 +10,7 @@ import * as yup from "yup";
 import { UserService } from "../../services/UserService";
 import { UserContext } from "../../common/Contexts/UserContext";
 import './Login.css';
+import { GetUser } from "../../services/Utils/GetUser";
 
 const schema = yup.object({
   userName: yup.string().required(),
@@ -41,8 +42,8 @@ export function Login() {
   const onSubmit = (data: any) => {
     const response = authenticationService.Login(data);
     response.then(() => {
-      const data = userService.Get();
-      data.then((d) => setUser(d));
+      let user = GetUser();
+      setUser(user);
     });
   };
 

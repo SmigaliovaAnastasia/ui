@@ -18,5 +18,13 @@ export const gameSortingList: SortingListModel = {
       value: "releasedate_desc",
       sortingName: "Release Date: Old first"
     },
+    {
+      value: "rating_asc",
+      sortingName: "Rating: Worst"
+    },
+    {
+      value: "rating_desc",
+      sortingName: "Rating: Top rated"
+    },
   ]
 }

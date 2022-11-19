@@ -13,11 +13,12 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 export function GameComponent(props: { game: GameDto }) {
 
     const { user, setUser } = useContext(UserContext);
-    const adminMode = user?.userRoles.includes(Roles.Admin) ?
-        [<div className='admin_game_options'>
-            <Link to={`/`}><ModeEditOutlineOutlinedIcon className="game_edit" /></Link>
-            <div><DeleteOutlineOutlinedIcon className="game_delete" /></div>
-        </div>
+    const adminMode = user?.userRole === Roles.Admin ?
+        [
+            <div key={"adminButtons"} className='admin_game_options'>
+                <Link to={`/`}><ModeEditOutlineOutlinedIcon key={"edit"} className="game_edit" /></Link>
+                <div key={"delete"}><DeleteOutlineOutlinedIcon className="game_delete" /></div>
+            </div>
         ] : [];
 
     return (

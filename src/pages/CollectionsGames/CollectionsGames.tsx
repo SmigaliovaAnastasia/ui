@@ -24,6 +24,7 @@ import { CollectionService } from "../../services/CollectionService";
 import GameSelectDialog from "../../components/DialogWindows/GameSelectDialog";
 import { PropaneSharp } from "@mui/icons-material";
 import { DialogContext } from "../../common/Contexts/DialogContext";
+import { gameFilterBarModelWithGenresAndComplexityLevels } from "../../common/Constants/GameFilters/GameFilterBar";
 
 export function CollectionsGames() {
   const params = useParams();
@@ -31,6 +32,8 @@ export function CollectionsGames() {
   const collectionService = new CollectionService;
 
   const [open, setOpen] = useState(false);
+  
+  const [filterBar, setFilterBar] = useState<JSX.Element>();
 
   const [games, setGames] = useState<JSX.Element[]>();
   const [collectionDescription, setCollectionDescription] = useState<JSX.Element>();
@@ -40,10 +43,16 @@ export function CollectionsGames() {
     filterProperty: "collection_id",
     filterOperator: '',
     value: String(params.id)
-}]));
+  }]));
+
   useEffect(() => {
     let request = collectionService.getCollectionById(String(params.id));
     request.then(d => setCollectionDescription(<CollectionDescriptionComponent collection={d} />))
+
+    const filterBarModel = gameFilterBarModelWithGenresAndComplexityLevels();
+    filterBarModel.then((f) => setFilterBar(
+      <FilterBarComponent filterBarModel={f}></FilterBarComponent>
+      ));
   }, []);
 
   useEffect(() => {
@@ -101,7 +110,7 @@ export function CollectionsGames() {
               <Pagination count={totalPages} onChange={(e, value) => dispatch({ type: "setPage", payload: value })} />
             </div>
           </div>
-          <FilterBarComponent filterBarModel={gameFilterBarModel}></FilterBarComponent>
+          {filterBar}
         </div>
       </PagedRequestContext.Provider>
       <DialogContext.Provider value={{open, setOpen}}>

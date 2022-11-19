@@ -2,8 +2,21 @@ import { GameListDto } from '../../common/Entities/GameDtos/GameListDto';
 import { StarsBarComponent } from '../Ratings/StarsBarComponent';
 import './GameListComponent.css';
 import { Link } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../common/Contexts/UserContext';
 
-export function GameListComponent(props: { game: GameListDto }) {
+export function GameListComponent(props: { game: GameListDto, onClick: (id: string) => void }) {
+    const { user, setUser } = useContext(UserContext);
+    const [add, setAdd] = useState<JSX.Element>();
+
+    useEffect(() => {
+        if (user) {
+            setAdd(<p className="add" onClick={() => props.onClick(props.game.id)}>Add</p>)
+        }
+        else {
+            setAdd(<></>);
+        }
+    }, [user]);
 
     return (
         <div className="found_game">
@@ -28,7 +41,7 @@ export function GameListComponent(props: { game: GameListDto }) {
                         <p className="number" id="rating">{props.game.rating} / 5</p>
                         <p className="average">Average Rating</p>
                     </div>
-                    <p className="add">Add</p>
+                    {add}
                 </div>
             </div>
         </div>
