@@ -8,6 +8,7 @@ import { styled } from '@mui/system';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import './CreateGame.css'
+import { environment } from "../../config/environment/environment";
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(200),
@@ -44,17 +45,16 @@ export function CreateGame() {
   const onSubmit = (data: any) => gameservice.AddGame(data);
 
   const handleDownload = (value: FileList | null) => {
-    const fr = new FileReader();
     if (value) {
-      fr.readAsArrayBuffer(value[0]);
-      fr.onload = () => {
-        if (fr.result) {
-          const blob = new Blob([fr.result]);
-          const url = "/img/HELP.jpg";
-          fileSaver.saveAs(blob, url);
-          setImage(url);
-        }
-      }
+      const response = fetch(`/api/upload`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'image/jpeg'
+        },
+        body: JSON.stringify(value)
+      }).then(res => {
+        console.log(res.statusText)
+     });
     }
   }
 
