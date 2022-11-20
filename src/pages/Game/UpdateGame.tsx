@@ -14,6 +14,7 @@ import { FormControlLabel } from "@mui/material";
 import { handleFileUpload } from "../../services/FileService";
 import { GameCreateUpdateComponent } from "../../components/Games/GameCreateUpdateComponent";
 import { GameDto } from "../../common/Entities/GameDtos/GameDto";
+import { useParams } from "react-router-dom";
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(200),
@@ -26,39 +27,38 @@ const schema = yup.object({
   releaseDate: yup.date().required(),
 }).required();
 
-export function CreateGame() {
-  const gameservice = new GameService();
-  const onSubmit = (data: any) => {console.log(data); gameservice.AddGame(data)};
+const StyledTextField = styled(TextField)({
+  backgroundColor: "#262626",
+  padding: 0.1,
+  width: "100%",
+  borderRadius: 10,
+  '& p': {
+    color: 'rgb(255, 108, 50)',
+  },
+  '& .MuiFormLabel-root': {
+    color: '#BFBFBF',
+  },
+});
 
-  const emptyDto : GameDto = {
-    id: '',
-    name: '',
-    description: '',
-    rules: '',
-    minPalyerAge: 0,
-    minNumOfPlayers: 0,
-    maxNumOfPlayers: 0,
-    minPlayingTimeMinutes: 0,
-    maxPlayingTimeMinutes: 0,
-    imageUrl: '',
-    rating: 0,
-    releaseDate: new Date(),
-    genreDtos: [],
-    gameSeriesDto: {
-      id: '24B8718B-E059-ED11-8D43-A276BD7EDE91',
-      name: '',
-      description: '',
-      imageUrl: ''
-    },
-    complexityLevelDto: {
-      id: 'EF0AF3C6-F35D-ED11-8D43-A276BD7EDE91',
-      name: '',
-      description: ''
-    },
-    reviewIds: []
-  };
+export function UpdateGame() {
+  const gameservice = new GameService();
+  const params = useParams();
+  const onSubmit = (data: any) => gameservice.UpdateGame(String(params.id), data);
+
+  const [gameComponent, setGameComponent] = useState<JSX.Element>();
+
+  useEffect(() => {
+    var request = gameservice.getGameById(String(params.id));
+    request.then(d => {
+      setGameComponent(
+        <GameCreateUpdateComponent game={d}
+          onSubmit={onSubmit}
+        />)
+    });
+  }, []);
+
 
   return (
-    <GameCreateUpdateComponent game={emptyDto} onSubmit={onSubmit}></GameCreateUpdateComponent>
+    <div>{gameComponent}</div>
   );
 };
