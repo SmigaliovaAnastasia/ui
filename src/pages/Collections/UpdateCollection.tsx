@@ -40,10 +40,6 @@ export function UpdateCollection() {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(collectionComponent);
-  }, [collectionComponent])
-
   return (
     <div>
       {collectionComponent}

@@ -10,7 +10,6 @@ export function Logout() {
   useEffect (() => {
     LogOut();
     setUser(null);
-    navigate('/');
   }, []);
 
   return (

@@ -46,7 +46,8 @@ export function CreateCollection() {
     {
       dto.applicationUserId = user.userId;
     }
-    collectionService.AddCollection(data);
+    console.log(dto);
+    collectionService.AddCollection(dto);
   };
 
   const emptyCollection = {

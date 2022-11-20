@@ -11,7 +11,10 @@ import { CollectionService } from "../../services/CollectionService";
 import { UserContext } from "../../common/Contexts/UserContext";
 import { CollectionCreateDto } from "../../common/Entities/CollectionDtos/CollectionCreateDto";
 import { useParams } from "react-router-dom";
-import { parseJsonSourceFileConfigFileContent } from "typescript";
+import { parseJsonSourceFileConfigFileContent, setConstantValue } from "typescript";
+import { environment } from "../../config/environment/environment";
+import { handleFileUpload } from "../../services/FileService";
+import '../../pages/Game/CreateGame.css'
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(200),
@@ -22,6 +25,7 @@ const schema = yup.object({
 const StyledTextField = styled(TextField)({
   backgroundColor: "#262626",
   padding: 0.1,
+  marginBottom: 19,
   width: "100%",
   borderRadius: 10,
   '& p': {
@@ -34,7 +38,7 @@ const StyledTextField = styled(TextField)({
 
 export function CollectionCreateUpdateComponent(props: { collection: CollectionCreateDto, onSubmit: (data: any) => void }) {
 
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const { control, setValue, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       name: props.collection.name,
@@ -43,34 +47,52 @@ export function CollectionCreateUpdateComponent(props: { collection: CollectionC
     }
   });
 
+  const [image, setImage] = useState(props.collection.imageUrl);
+
+  const handleDownload = (value: FileList | null) => {
+    if (value) {
+      const response = handleFileUpload(value).then((name) => {
+        setImage(`/img/games/${name}`);
+      })
+    };
+  }
+
+  useEffect(() =>
+    setValue('imageUrl', image, {
+      shouldValidate: true,
+      shouldDirty: true
+    }), [image]);
+
   return (
     <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
       <Grid container spacing={2} direction="row" justifyContent="center" alignItems="flex-start">
-        <Grid item xs={8}>
+        <Grid item xs={3}>
+          <div className="game_form_image" style={{ backgroundImage: `url(${image})` }}></div>
+          <Button
+            variant="contained"
+            component="label"
+          >
+            Upload File
+            <input
+              accept="image/*"
+              type="file"
+              hidden
+              onChange={(e) => handleDownload(e.target.files)}
+            />
+          </Button>
+        </Grid>
+
+        <Grid item xs={5}>
           <Controller
             name="name"
             control={control}
             render={({ field }) => <StyledTextField label="Name" helperText={errors?.name && String(errors.name.message)} placeholder="Name" variant="filled" type="text" {...field} />}
           />
-        </Grid>
-
-        <Grid item xs={8}>
           <Controller
             name="description"
             control={control}
             render={({ field }) => <StyledTextField label="Description" helperText={errors?.description && String(errors.description.message)} placeholder="Description" variant="filled" multiline={true} type="text" {...field} />}
           />
-        </Grid>
-
-        <Grid item xs={8}>
-          <Controller
-            name="imageUrl"
-            control={control}
-            render={({ field }) => <StyledTextField label="ImageUrl" defaultValue={props.collection.imageUrl} helperText={errors?.imageUrl && String(errors.imageUrl.message)} placeholder="ImageUrl" variant="filled" multiline={true} type="text" {...field} />}
-          />
-        </Grid>
-
-        <Grid item xs={6}>
           <Button type="submit" variant="contained">Submit</Button>
         </Grid>
       </Grid>

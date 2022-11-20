@@ -11,6 +11,7 @@ import './CreateGame.css'
 import { environment } from "../../config/environment/environment";
 import { CheckBox } from "@mui/icons-material";
 import { FormControlLabel } from "@mui/material";
+import { handleFileUpload } from "../../services/FileService";
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(200),
@@ -39,25 +40,25 @@ const StyledTextField = styled(TextField)({
 export function CreateGame() {
   const gameservice = new GameService();
   const [image, setImage] = useState("");
-  const fileSaver = require('file-saver');
 
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const { control, setValue, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   });
   const onSubmit = (data: any) => gameservice.AddGame(data);
 
   const handleDownload = (value: FileList | null) => {
     if (value) {
-      const data = new FormData;
-      data.append('file', value[0]);
-      const response = fetch(`${environment.clientServerApiUrl}/upload`, {
-        method: 'POST',
-        body: data
-      }).then(res => {
-        res.json().then((d) => setImage('img/games/' + d.filename))
-      });
-    }
+      const response = handleFileUpload(value).then((name) => {
+        setImage(`/img/games/${name}`);
+      })
+    };
   }
+
+  useEffect(() =>
+    setValue('imageUrl', image, {
+      shouldValidate: true,
+      shouldDirty: true
+    }), [image]);
 
   return (
     <form className="game_form" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
