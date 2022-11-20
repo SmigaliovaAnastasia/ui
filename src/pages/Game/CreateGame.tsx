@@ -9,6 +9,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import './CreateGame.css'
 import { environment } from "../../config/environment/environment";
+import { CheckBox } from "@mui/icons-material";
+import { FormControlLabel } from "@mui/material";
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(200),
@@ -46,22 +48,21 @@ export function CreateGame() {
 
   const handleDownload = (value: FileList | null) => {
     if (value) {
-      const response = fetch(`/api/upload`, {
+      const data = new FormData;
+      data.append('file', value[0]);
+      const response = fetch(`${environment.clientServerApiUrl}/upload`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'image/jpeg'
-        },
-        body: JSON.stringify(value)
+        body: data
       }).then(res => {
-        console.log(res.statusText)
-     });
+        res.json().then((d) => setImage('img/games/' + d.filename))
+      });
     }
   }
 
   return (
     <form className="game_form" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-      <Grid container spacing={2} direction="column" justifyContent="flex-start" alignItems="center">
-        <Grid item xs={4}>
+      <Grid container spacing={2} direction="row" justifyContent="center" alignItems="flex-start">
+        <Grid item xs={3}>
           <div className="game_form_image" style={{ backgroundImage: `url(${image})` }}></div>
           <Button
             variant="contained"
@@ -76,7 +77,7 @@ export function CreateGame() {
             />
           </Button>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={6}>
           <Grid container spacing={2} direction="row" justifyContent="center" alignItems="flex-start">
             <Grid item xs={6}>
               <Controller
@@ -99,7 +100,6 @@ export function CreateGame() {
             <Grid item xs={12}>
               <Controller
                 name="description"
-                defaultValue={''}
                 control={control}
                 render={({ field }) => <StyledTextField label="Description" helperText={errors?.description && String(errors.description.message)} placeholder="Description" variant="filled" multiline={true} type="text" {...field} />}
               />
@@ -108,7 +108,6 @@ export function CreateGame() {
             <Grid item xs={12}>
               <Controller
                 name="rules"
-                defaultValue={''}
                 control={control}
                 render={({ field }) => <StyledTextField label="Rules" helperText={errors?.rules && String(errors.rules.message)} placeholder="Rules" variant="filled" multiline={true} type="text" {...field} />}
               />
@@ -117,7 +116,6 @@ export function CreateGame() {
             <Grid item xs={6}>
               <Controller
                 name="minNumOfPlayers"
-                defaultValue={''}
                 control={control}
                 render={({ field }) => <StyledTextField label="Min number of players" helperText={errors?.minNumOfPlayers && String(errors.minNumOfPlayers.message)} placeholder="Min number of players" variant="filled" type="number" {...field} />}
               />
@@ -126,7 +124,6 @@ export function CreateGame() {
             <Grid item xs={6}>
               <Controller
                 name="maxNumOfPlayers"
-                defaultValue={''}
                 control={control}
                 render={({ field }) => <StyledTextField label="Max number of players" helperText={errors?.maxNumOfPlayers && String(errors.maxNumOfPlayers.message)} placeholder="Max number of players" variant="filled" type="number" {...field} />}
               />
@@ -135,7 +132,6 @@ export function CreateGame() {
             <Grid item xs={6}>
               <Controller
                 name="minPalyerAge"
-                defaultValue={''}
                 control={control}
                 render={({ field }) => <StyledTextField label="Min player age" helperText={errors?.minPalyerAge && String(errors.minPalyerAge.message)} placeholder="Min player age" variant="filled" type="number" {...field} />}
               />
@@ -144,15 +140,18 @@ export function CreateGame() {
             <Grid item xs={6}>
               <Controller
                 name="releaseDate"
-                defaultValue={''}
                 control={control}
-                render={({ field }) => <StyledTextField label="releaseDate" defaultValue="1998-07-14" helperText={errors?.releaseDate && String(errors.releaseDate.message)} variant="filled" type="date" {...field} />}
+                render={({ field }) => <StyledTextField label="releaseDate" helperText={errors?.releaseDate && String(errors.releaseDate.message)} variant="filled" type="date" {...field} />}
               />
             </Grid>
 
             <Grid item xs={6}>
               <Button type="submit" variant="contained">Submit</Button>
             </Grid>
+          </Grid>
+          <Grid item xs={3}>
+            
+
           </Grid>
         </Grid>
       </Grid>
