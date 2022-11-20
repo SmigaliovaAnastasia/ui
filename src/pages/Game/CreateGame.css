@@ -1,0 +1,9 @@
+.game_form {
+  width: 70%;
+}
+
+.game_form_image {
+  width: 100%;
+  min-height: 15vw;
+  background-size: cover;
+}
