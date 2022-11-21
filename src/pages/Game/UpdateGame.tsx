@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GameService } from "../../services/GameService";
 import { useForm, Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
@@ -15,6 +15,8 @@ import { handleFileUpload } from "../../services/FileService";
 import { GameCreateUpdateComponent } from "../../components/Games/GameCreateUpdateComponent";
 import { GameDto } from "../../common/Entities/GameDtos/GameDto";
 import { useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "../../common/Contexts/UserContext";
+import { Roles } from "../../common/Constants/Roles";
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(200),
@@ -42,11 +44,12 @@ const StyledTextField = styled(TextField)({
 
 export function UpdateGame() {
   const gameservice = new GameService();
-  const navigate = useNavigate();
   const params = useParams();
-  const onSubmit = (data: any) => { gameservice.UpdateGame(String(params.id), data).then(() => navigate('/browse')) };
-
+  
   const [gameComponent, setGameComponent] = useState<JSX.Element>();
+  const navigate = useNavigate();
+  
+  const onSubmit = (data: any) => { gameservice.UpdateGame(String(params.id), data).then(() => navigate('/browse')) };
 
   useEffect(() => {
     var request = gameservice.getGameById(String(params.id));

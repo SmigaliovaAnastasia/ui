@@ -1,6 +1,6 @@
 import { SortingListModel } from "../../Models/SortingListModels/SortingListModel";
 
-export const gameSortingList: SortingListModel = {
+export const collectionSortingList: SortingListModel = {
   sortings: [
     {
       value: {
@@ -18,31 +18,31 @@ export const gameSortingList: SortingListModel = {
     },
     {
       value: {
-        sortingColumn: "releasedate",
+        sortingColumn: "number_of_games",
         direction: "asc"
       },
-      sortingName: "Release Date: New first"
+      sortingName: "Number of Games: Low to High"
     },
     {
       value: {
-        sortingColumn: "releasedate",
+        sortingColumn: "number_of_games",
         direction: "desc"
       },
-      sortingName: "Release Date: Old first"
+      sortingName: "Number of Games: High to Low"
     },
     {
       value: {
-        sortingColumn: "rating",
+        sortingColumn: "number_of_favourite_games",
         direction: "asc"
       },
-      sortingName: "Rating: Worst"
+      sortingName: "Number of liked Games: Low to High"
     },
     {
       value: {
-        sortingColumn: "rating",
+        sortingColumn: "number_of_favourite_games",
         direction: "desc"
       },
-      sortingName: "Rating: Top rated"
+      sortingName: "Number of liked Games: High to Low"
     },
   ]
 }

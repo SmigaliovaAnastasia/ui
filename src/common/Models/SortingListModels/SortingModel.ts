@@ -1,6 +1,6 @@
 import { SortingMethod } from "../PagedRequest/SortingMethod"
 
 export type SortingModel = {
-  value: string,
+  value: SortingMethod,
   sortingName: string,
 }

@@ -3,19 +3,31 @@ import { SortingListModel } from "../../Models/SortingListModels/SortingListMode
 export const reviewsSortingList: SortingListModel = {
   sortings: [
     {
-      value: "username_asc",
+      value: {
+        sortingColumn: "userName",
+        direction: "asc"
+      },
       sortingName: "Name: A-Z"
     },
     {
-      value: "username_desc",
+      value: {
+        sortingColumn: "userName",
+        direction: "desc"
+      },
       sortingName: "Name: Z-A"
     },
     {
-      value: "rating_asc",
+      value: {
+        sortingColumn: "rating",
+        direction: "asc"
+      },
       sortingName: "Rating: Worst rated"
     },
     {
-      value: "rating_desc",
+      value: {
+        sortingColumn: "rating",
+        direction: "desc"
+      },
       sortingName: "Rating: Top rated"
     },
   ]

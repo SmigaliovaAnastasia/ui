@@ -1,6 +1,6 @@
 import { SortingComponent } from "../../components/Sorting/SortingComponent"
 import './Collections.css'
-import { collectionSortingList } from "../../common/Constants/CollectionSorting/CollectionSortingList";
+import { collectionSortingList } from "../../common/Constants/Sorting/CollectionSortingList";
 import { Pagination } from "@mui/material";
 import { CollectionListComponent } from "../../components/Collections/CollectionListComponent";
 import { useEffect, useState, useReducer, useContext } from "react";
@@ -12,7 +12,7 @@ import { CollectionDto } from "../../common/Entities/CollectionDtos/CollectionDt
 import { PagedResult } from "../../common/Models/PagedRequest/PagedResult";
 import { UserContext } from "../../common/Contexts/UserContext";
 import { PagedRequestContext } from "../../common/Contexts/PagedRequestContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Collections() {
   let collectionService = new CollectionService();
@@ -20,6 +20,7 @@ export function Collections() {
   const [collections, setCollections] = useState<Array<JSX.Element>>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [state, dispatch] = useReducer(pagedRequestReducer, defaultPagedRequest);
+ 
 
   useEffect(() => {
     let data = collectionService.GetPagedCollections(state);
@@ -61,7 +62,7 @@ export function Collections() {
       <div className="collections">
         <Link to="/createCollection" className="collection" >
           <div className="mask_collection"></div>
-          <div className="collection_image" style={{ backgroundImage: 'url(./img/add.svg)', backgroundSize: "20%" }}></div>
+          <div className="collection_image" style={{ backgroundImage: 'url(./img/add.svg)', backgroundSize: "30%" }}></div>
         </Link>
         {collections}
       </div>

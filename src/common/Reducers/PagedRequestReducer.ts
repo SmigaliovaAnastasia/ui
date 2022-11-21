@@ -40,7 +40,7 @@ export const pagedRequestReducer = (state: PagedRequest, action: PagedRequestAct
     case 'setPageSize':
       return { ...state, pageSize: action.payload };
     case 'setSorting':
-      return { ...state, sortingMethod: { value: action.payload } };
+      return { ...state, sortingMethod: action.payload };
     case 'setFilter':
       return {
         ...state,

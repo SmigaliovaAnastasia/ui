@@ -207,7 +207,9 @@ export function GameCreateUpdateComponent(props: { game: GameDto, onSubmit: (dat
             </Grid>
 
             <Grid item xs={12}>
-              <Button type="submit" variant="contained">Submit</Button>
+              <Grid container alignItems="center" justifyContent="center">
+                <Button type="submit" variant="contained">Submit game</Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

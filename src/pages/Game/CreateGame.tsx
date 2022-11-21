@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GameService } from "../../services/GameService";
 import { useForm, Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
@@ -15,6 +15,8 @@ import { handleFileUpload } from "../../services/FileService";
 import { GameCreateUpdateComponent } from "../../components/Games/GameCreateUpdateComponent";
 import { GameDto } from "../../common/Entities/GameDtos/GameDto";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../common/Contexts/UserContext";
+import { Roles } from "../../common/Constants/Roles";
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(200),

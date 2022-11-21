@@ -16,7 +16,7 @@ import { gameSortingList } from "../../common/Constants/Sorting/GameSortingList"
 import { CollectionsGamesService } from "../../services/CollectionsGamesService";
 import { CollectionGameDto } from "../../common/Entities/CollectionGameDtos/CollectionGameDto";
 import { CollectionGameComponent } from "../../components/Collections/CollectionGameComponent";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import './CollectionsGames.css'
 import { isPropertySignature } from "typescript";
 import { CollectionDescriptionComponent } from "../../components/Collections/CollectionDescriptionComponent";
@@ -25,6 +25,7 @@ import GameSelectDialog from "../../components/DialogWindows/GameSelectDialog";
 import { PropaneSharp } from "@mui/icons-material";
 import { DialogContext } from "../../common/Contexts/DialogContext";
 import { gameFilterBarModelWithGenresAndComplexityLevels } from "../../common/Constants/Filters/GameFilterBar";
+import { UserContext } from "../../common/Contexts/UserContext";
 
 export function CollectionsGames() {
   const params = useParams();
@@ -102,7 +103,7 @@ export function CollectionsGames() {
             <div className="collectionGamesContainer">
               <div className="collection_game"  onClick={handleClick}>
                 <div className="mask_collection_game"></div>
-                <div className="collection_game_image" style={{ backgroundImage: 'url(/img/add.svg)', backgroundSize: "20%" }}></div>
+                <div className="collection_game_image" style={{ backgroundImage: 'url(/img/add.svg)', backgroundSize: "35%" }}></div>
               </div>
               {games}
             </div>

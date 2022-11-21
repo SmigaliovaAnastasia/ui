@@ -6,16 +6,17 @@ import { useContext, useState } from 'react';
 import './Sorting.css'
 import { SortingListModel } from '../../common/Models/SortingListModels/SortingListModel';
 import { PagedRequestContext } from '../../common/Contexts/PagedRequestContext';
+import { SortingMethod } from '../../common/Models/PagedRequest/SortingMethod';
 
 export function SortingComponent(props: { sortingList: SortingListModel }) {
-  let items = props.sortingList.sortings.map(s => { return <MenuItem key={s.value} value={s.value}>{s.sortingName}</MenuItem> })
+  let items = props.sortingList.sortings.map(s => { return <MenuItem key={JSON.stringify(s.value)} value={JSON.stringify(s.value)}>{s.sortingName}</MenuItem> })
 
   const { state, dispatch } = useContext(PagedRequestContext);
-  const [sorting, setSorting] = useState<string>("");
+  const [sorting, setSorting] = useState<string>('');
 
   const handleChange = (event: SelectChangeEvent) => {
     setSorting(event.target.value);
-    dispatch({ type: "setSorting", payload: event.target.value })
+    dispatch({ type: "setSorting", payload: JSON.parse(event.target.value) })
   };
 
 

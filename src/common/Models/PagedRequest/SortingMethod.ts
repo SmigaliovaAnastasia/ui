@@ -1,3 +1,4 @@
-export interface SortingMethod {
-  value: string;
-}       
+export type SortingMethod = {
+  sortingColumn: string,
+  direction: string,
+}
