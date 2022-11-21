@@ -14,7 +14,7 @@ import { FormControlLabel } from "@mui/material";
 import { handleFileUpload } from "../../services/FileService";
 import { GameCreateUpdateComponent } from "../../components/Games/GameCreateUpdateComponent";
 import { GameDto } from "../../common/Entities/GameDtos/GameDto";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(200),
@@ -42,8 +42,9 @@ const StyledTextField = styled(TextField)({
 
 export function UpdateGame() {
   const gameservice = new GameService();
+  const navigate = useNavigate();
   const params = useParams();
-  const onSubmit = (data: any) => { gameservice.UpdateGame(String(params.id), data) };
+  const onSubmit = (data: any) => { gameservice.UpdateGame(String(params.id), data).then(() => navigate('/browse')) };
 
   const [gameComponent, setGameComponent] = useState<JSX.Element>();
 

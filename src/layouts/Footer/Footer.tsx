@@ -17,13 +17,6 @@ export function Footer() {
                   <Link to='/'>COLLECTIONS</Link>
                 </div>
               </Grid>
-              <Grid item xs={12} md={6}>
-                <div className="footerColumn">
-                  <Link to='/'>HELP</Link>
-                  <Link to='/'>PROFILE</Link>
-                  <Link to='/'>SETTINGS</Link>
-                </div>
-              </Grid>
             </Grid>
           </Grid>
           <Grid item xs={12} md={6}>

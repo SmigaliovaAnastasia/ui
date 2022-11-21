@@ -10,7 +10,7 @@ import * as yup from "yup";
 import { CollectionService } from "../../services/CollectionService";
 import { UserContext } from "../../common/Contexts/UserContext";
 import { CollectionCreateDto } from "../../common/Entities/CollectionDtos/CollectionCreateDto";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { parseJsonSourceFileConfigFileContent } from "typescript";
 import { CollectionCreateUpdateComponent } from "../../components/Collections/CollectionCreateUpdateComponent";
 import { GetUser } from "../../services/Utils/GetUser";
@@ -38,6 +38,7 @@ const StyledTextField = styled(TextField)({
 export function CreateCollection() {
 
   const collectionService = new CollectionService();
+  const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
 
   const onSubmit = (data: any) => {
@@ -47,7 +48,7 @@ export function CreateCollection() {
       dto.applicationUserId = user.userId;
     }
     console.log(dto);
-    collectionService.AddCollection(dto);
+    collectionService.AddCollection(dto).then(() => navigate('/collections'));
   };
 
   const emptyCollection = {

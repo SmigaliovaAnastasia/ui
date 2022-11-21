@@ -10,7 +10,7 @@ import * as yup from "yup";
 import { CollectionService } from "../../services/CollectionService";
 import { UserContext } from "../../common/Contexts/UserContext";
 import { CollectionCreateDto } from "../../common/Entities/CollectionDtos/CollectionCreateDto";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { parseJsonSourceFileConfigFileContent } from "typescript";
 import { CollectionCreateUpdateComponent } from "../../components/Collections/CollectionCreateUpdateComponent";
 import { CollectionDto } from "../../common/Entities/CollectionDtos/CollectionDto";
@@ -18,6 +18,7 @@ import { cp } from "fs";
 
 export function UpdateCollection() {
 
+  const navigate = useNavigate();
   const params = useParams();
   const collectionService = new CollectionService();
   const [collectionComponent, setCollectionComponent] = useState<JSX.Element>();
@@ -33,7 +34,7 @@ export function UpdateCollection() {
           applicationUserId: d.applicationUserId
         }}
           onSubmit={(data: any) => {
-            collectionService.UpdateCollection(d.id, data);
+            collectionService.UpdateCollection(d.id, data).then(() => navigate('/collections'));
           }}
         />
       )

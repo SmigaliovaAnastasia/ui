@@ -14,6 +14,7 @@ import { FormControlLabel } from "@mui/material";
 import { handleFileUpload } from "../../services/FileService";
 import { GameCreateUpdateComponent } from "../../components/Games/GameCreateUpdateComponent";
 import { GameDto } from "../../common/Entities/GameDtos/GameDto";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(200),
@@ -28,7 +29,8 @@ const schema = yup.object({
 
 export function CreateGame() {
   const gameservice = new GameService();
-  const onSubmit = (data: any) => { gameservice.AddGame(data) };
+  const navigate = useNavigate();
+  const onSubmit = (data: any) => { gameservice.AddGame(data).then(() => navigate('/browse')) };
 
   const emptyDto: GameDto = {
     id: '',

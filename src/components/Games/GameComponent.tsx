@@ -3,18 +3,27 @@ import { GenreDto } from "../../common/Entities/GameDtos/GenreDto"
 import { StarsBarComponent } from "../Ratings/StarsBarComponent"
 import './GameComponent.css'
 import { Link, useNavigate } from "react-router-dom"
-import { useContext } from "react"
+import { useContext, useReducer } from "react"
 import { UserContext } from "../../common/Contexts/UserContext"
 import { Roles } from "../../common/Constants/Roles"
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { GameService } from "../../services/GameService"
 import { ReviewsComponent } from "../Reviews/ReviewsComponent"
+import { PagedRequestContext } from "../../common/Contexts/PagedRequestContext"
+import { pagedRequestReducer } from "../../common/Reducers/PagedRequestReducer"
+import { defaultPagedRequestWithFilter } from "../../common/Constants/DefaultPagedRequest"
 
 
 export function GameComponent(props: { game: GameDto }) {
 
     const { user, setUser } = useContext(UserContext);
+    const [state, dispatch] = useReducer(pagedRequestReducer, defaultPagedRequestWithFilter([{
+        filterProperty: "game_id",
+        filterOperator: '',
+        value: String(props.game.id)
+      }]));
+
     const gameService = new GameService;
     const navigate = useNavigate()
 
@@ -32,7 +41,7 @@ export function GameComponent(props: { game: GameDto }) {
             </div>
         ] : [];
 
-    
+
 
     return (
         <div>
@@ -106,7 +115,9 @@ export function GameComponent(props: { game: GameDto }) {
                 </div>
 
                 <div className="tab_content">
-                    <ReviewsComponent gameId={props.game.id}/>
+                    <PagedRequestContext.Provider value={{ state, dispatch }}>
+                        <ReviewsComponent gameId={props.game.id} />
+                    </PagedRequestContext.Provider>
                 </div>
             </div>
         </div>

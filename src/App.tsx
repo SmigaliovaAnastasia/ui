@@ -11,7 +11,7 @@ import { User } from './common/Entities/UserDtos/User';
 import { GetUser } from './services/Utils/GetUser';
 
 function App() {
-  const [user, setUser] = useState<User>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   return (
     <div className="App">

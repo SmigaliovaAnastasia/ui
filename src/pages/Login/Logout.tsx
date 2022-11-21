@@ -9,8 +9,12 @@ export function Logout() {
   const navigate = useNavigate();
 
   useEffect (() => {
+    setUser({
+      userId: '',
+      userRole: ''
+    });
     LogOut();
-    setUser(GetUser());
+    navigate('/')
   }, []);
 
   return (

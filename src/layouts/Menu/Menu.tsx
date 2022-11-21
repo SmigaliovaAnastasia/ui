@@ -30,7 +30,6 @@ export function Menu() {
             <Link to='/'>HOME</Link>
             <Link to='/browse'>BROWSE</Link>
             <Link to='/Collections'>COLLECTIONS</Link>
-            <Link to='/'>HELP</Link>
           </Grid>
           <Grid item xs={12} md={2} display='flex' justifyContent='flex-end' alignItems='center'>
             <Link to={link}>{text}</Link>

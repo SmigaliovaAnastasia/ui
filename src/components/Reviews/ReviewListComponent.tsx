@@ -6,29 +6,34 @@ import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../common/Contexts/UserContext';
 import { ReviewDto } from '../../common/Entities/ReviewDtos/ReviewDto';
+import { GetUser } from '../../services/Utils/GetUser';
+import '../Games/GameComponent.css'
 
-export function ReviewListComponent(props: { review: ReviewDto }) {
-    return (
-        <div className="found_game">
-            <div className="mask"></div>
-            <div className="picture" style={{ backgroundImage: `url(${props.review.userImageUrl})` }} ></div>
-            <div className="details">
-                <div className="description_reviews">
-                    <div>
-                        <p className="name">{props.review.userName}</p>
-                    </div>
-                    <div>
-                        <div className="string_reviews"><p>Commentary: {props.review.commentary}</p></div>
-                    </div>
-                </div>
-                <div className="ratings">
-                    <div className="rating">
-                        <StarsBarComponent rating={props.review.rating} />
-                        <p className="number" id="rating">{props.review.rating} / 5</p>
-                        <p className="average">Average Rating</p>
-                    </div>
-                </div>
-            </div>
+export function ReviewListComponent(props: { review: ReviewDto, buttons: JSX.Element[]}) {
+  const [buttons, setButtons] = useState<JSX.Element[]>(props.buttons);
+
+  return (
+    <div className="found_game">
+      <div className="mask"></div>
+      <div className="picture" style={{ backgroundImage: `url(${props.review.userImageUrl})` }} ></div>
+      <div className="details">
+        <div className="description_reviews">
+          <div>
+            <p className="name">{props.review.userName}</p>
+          </div>
+          <div>
+            <div className="string_reviews"><p>Commentary: {props.review.commentary}</p></div>
+          </div>
         </div>
-    );
+        <div className="ratings">
+          <div className="rating">
+            <StarsBarComponent rating={props.review.rating} />
+            <p className="number" id="rating">{props.review.rating} / 5</p>
+            <p className="average">Average Rating</p>
+          </div>
+        {buttons}
+        </div>
+      </div>
+    </div>
+  );
 }

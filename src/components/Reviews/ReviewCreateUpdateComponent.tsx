@@ -14,6 +14,8 @@ import { ReviewService } from '../../services/ReviewsService';
 import { GetUser } from '../../services/Utils/GetUser';
 import { ReviewUpdateDto } from '../../common/Entities/ReviewDtos/ReviewUpdateDto';
 import { idText } from 'typescript';
+import { PagedRequestContext } from '../../common/Contexts/PagedRequestContext';
+import { GameForceUpdateContext } from '../../common/Contexts/GameForceUpdateContext';
 
 const StyledTextField = styled(TextField)({
   backgroundColor: "#262626",
@@ -42,6 +44,8 @@ export function ReviewCreateUpdateComponent(props: { gameId: string, review: Rev
   const [comment, setComment] = useState(props.review.commentary);
   const [image, setImage] = useState("");
   const [userName, setUserName] = useState("");
+  const { state, dispatch } = useContext(PagedRequestContext);
+  const { update, setUpdate } = useContext(GameForceUpdateContext);
 
   useEffect(() => {
     const userservice = new UserService;
@@ -53,20 +57,26 @@ export function ReviewCreateUpdateComponent(props: { gameId: string, review: Rev
 
   const handleClick = () => {
     const reviewsService = new ReviewService;
-    if (props.type = "update") {
+    if (props.type === "create") {
       reviewsService.AddReview({
         commentary: comment,
         rating: value ? value : 0,
         applicationUserId: String(GetUser()?.userId),
         gameId: props.gameId,
-      })
+      }).then(() => {
+        setUpdate(!update);
+        dispatch({ type: "forceUpdate" });
+      });
     }
-    else if (props.type="update") {
+    else if (props.type === "update") {
       reviewsService.UpdateReview(props.review.id, {
         id: props.review.id,
         commentary: comment,
         rating: value ? value : 0
-      })
+      }).then(() => {
+        setUpdate(!update);
+        dispatch({ type: "forceUpdate" });
+      });
     }
   }
 
@@ -89,6 +99,7 @@ export function ReviewCreateUpdateComponent(props: { gameId: string, review: Rev
                 multiline={true}
                 rows={5}
                 type="text"
+                defaultValue={comment}
                 onChange={e => setComment(e.target.value)}
               />
             </Grid>
