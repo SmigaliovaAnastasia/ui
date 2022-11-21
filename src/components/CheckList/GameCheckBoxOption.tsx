@@ -6,8 +6,8 @@ import { GenresCheckboxContext } from '../../common/Contexts/GenresCheckboxConte
 import { GenreService } from '../../services/GenreService';
 import './GameCheckBox.css'
 
-export default function GameCheckBoxOption(props: {genreId: string, genreName: string}) {
-  const [checked, setChecked] = useState(false);
+export default function GameCheckBoxOption(props: {isChecked: boolean, genreId: string, genreName: string}) {
+  const [checked, setChecked] = useState(props.isChecked);
   const {genreIds, setGenreIds} = useContext(GenresCheckboxContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

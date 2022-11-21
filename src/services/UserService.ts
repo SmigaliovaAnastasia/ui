@@ -1,4 +1,5 @@
 import { User } from "../common/Entities/UserDtos/User";
+import { UserDto } from "../common/Entities/UserDtos/UserDto";
 import { environment } from "../config/environment/environment";
 import { GetJwt } from "./Utils/GetJwt";
 
@@ -8,7 +9,7 @@ export class UserService {
     this.apiUrl = environment.apiUrl;
   };
 
-  public async Get(): Promise<User> {
+  public async Get(): Promise<UserDto> {
     let jwt = GetJwt();
 
     const response = await fetch(`${this.apiUrl}/Users/`, {

@@ -43,7 +43,7 @@ const StyledTextField = styled(TextField)({
 export function UpdateGame() {
   const gameservice = new GameService();
   const params = useParams();
-  const onSubmit = (data: any) => gameservice.UpdateGame(String(params.id), data);
+  const onSubmit = (data: any) => { gameservice.UpdateGame(String(params.id), data) };
 
   const [gameComponent, setGameComponent] = useState<JSX.Element>();
 

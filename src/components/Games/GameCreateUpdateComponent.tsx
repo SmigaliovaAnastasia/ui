@@ -14,6 +14,10 @@ import { handleFileUpload } from "../../services/FileService";
 import { GameDto } from "../../common/Entities/GameDtos/GameDto";
 import GameCheckBox from "../CheckList/GameCheckBox";
 import { GenresCheckboxContext } from "../../common/Contexts/GenresCheckboxContest";
+import { ComplexityLevelContext } from "../../common/Contexts/ComplexityLevelContext";
+import { ComplexityLevelSelect } from "../GameSelect/ComplexityLevelSelect";
+import { GameSeriesContext } from "../../common/Contexts/GameSeriesContext";
+import { GameSeriesSelect } from "../GameSelect/GameSeriesSelect";
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(200),
@@ -47,9 +51,10 @@ const StyledTextField = styled(TextField)({
 export function GameCreateUpdateComponent(props: { game: GameDto, onSubmit: (data: any) => void }) {
   const [image, setImage] = useState(props.game.imageUrl);
   const [genreIds, setGenreIds] = useState<string[]>([]);
+  const [complexityLevelId, setComplexityLevelId] = useState('');
+  const [gameSeriesId, setGameSeriesId] = useState('');
 
   useEffect(() => {
-    console.log(genreIds);
     setValue('genreIds', genreIds, {
       shouldValidate: true,
       shouldDirty: true
@@ -67,7 +72,7 @@ export function GameCreateUpdateComponent(props: { game: GameDto, onSubmit: (dat
       minPalyerAge: props.game.minPalyerAge,
       minPlayingTimeMinutes: props.game.minPlayingTimeMinutes,
       maxPlayingTimeMinutes: props.game.maxPlayingTimeMinutes,
-      releaseDate: props.game.releaseDate,
+      releaseDate: new Date(props.game.releaseDate).toISOString().substring(0, 10),
       imageUrl: props.game.imageUrl,
       gameSeriesId: props.game.gameSeriesDto.id,
       complexityLevelId: props.game.complexityLevelDto.id,
@@ -88,6 +93,18 @@ export function GameCreateUpdateComponent(props: { game: GameDto, onSubmit: (dat
       shouldValidate: true,
       shouldDirty: true
     }), [image]);
+
+  useEffect(() =>
+    setValue('complexityLevelId', complexityLevelId, {
+      shouldValidate: true,
+      shouldDirty: true
+    }), [complexityLevelId]);
+
+  useEffect(() =>
+    setValue('gameSeriesId', gameSeriesId, {
+      shouldValidate: true,
+      shouldDirty: true
+    }), [gameSeriesId]);
 
   return (
     <form className="game_form" autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
@@ -191,9 +208,21 @@ export function GameCreateUpdateComponent(props: { game: GameDto, onSubmit: (dat
 
         <Grid item xs={3}>
           <Grid container spacing={2} direction="column" justifyContent="center" alignItems="flex-start">
-            <GenresCheckboxContext.Provider value={{genreIds, setGenreIds}}>
-              <GameCheckBox></GameCheckBox>
-            </GenresCheckboxContext.Provider>
+            <Grid item xs={12}>
+              <GenresCheckboxContext.Provider value={{ genreIds, setGenreIds }}>
+                <GameCheckBox defaultValue={props.game.genreDtos.map(g => g.id)}></GameCheckBox>
+              </GenresCheckboxContext.Provider>
+            </Grid>
+            <Grid item xs={12}>
+              <ComplexityLevelContext.Provider value={{ complexityLevelId, setComplexityLevelId }}>
+                <ComplexityLevelSelect defaultValue={props.game.complexityLevelDto.id}></ComplexityLevelSelect>
+              </ComplexityLevelContext.Provider>
+            </Grid>
+            <Grid item xs={12}>
+              <GameSeriesContext.Provider value={{ gameSeriesId, setGameSeriesId }}>
+                <GameSeriesSelect defaultValue={props.game.gameSeriesDto.id}></GameSeriesSelect>
+              </GameSeriesContext.Provider>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

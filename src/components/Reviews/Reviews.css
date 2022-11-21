@@ -1,0 +1,11 @@
+.description_reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.string_reviews p{
+  font-size: 1.1rem!important;
+}

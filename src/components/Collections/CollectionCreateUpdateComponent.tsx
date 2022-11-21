@@ -68,18 +68,6 @@ export function CollectionCreateUpdateComponent(props: { collection: CollectionC
       <Grid container spacing={2} direction="row" justifyContent="center" alignItems="flex-start">
         <Grid item xs={3}>
           <div className="game_form_image" style={{ backgroundImage: `url(${image})` }}></div>
-          <Button
-            variant="contained"
-            component="label"
-          >
-            Upload File
-            <input
-              accept="image/*"
-              type="file"
-              hidden
-              onChange={(e) => handleDownload(e.target.files)}
-            />
-          </Button>
         </Grid>
 
         <Grid item xs={5}>
@@ -93,7 +81,21 @@ export function CollectionCreateUpdateComponent(props: { collection: CollectionC
             control={control}
             render={({ field }) => <StyledTextField label="Description" helperText={errors?.description && String(errors.description.message)} placeholder="Description" variant="filled" multiline={true} type="text" {...field} />}
           />
+          <Grid container alignItems={"center"} justifyContent={"space-between"}>
+          <Button
+            variant="contained"
+            component="label"
+          >
+            Upload File
+            <input
+              accept="image/*"
+              type="file"
+              hidden
+              onChange={(e) => handleDownload(e.target.files)}
+            />
+          </Button>
           <Button type="submit" variant="contained">Submit</Button>
+          </Grid>
         </Grid>
       </Grid>
     </form>

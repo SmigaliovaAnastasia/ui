@@ -71,6 +71,19 @@
   font-size: 1rem;
 }
 
+.description_text_rules {
+  line-height: 1.3rem;
+  padding: 0;
+  margin: 0;
+  color: #BFBFBF;
+  font-size: 1rem;
+}
+
+.description_name_rules {
+  float: left!important;
+  margin-right: 0.3rem;
+}
+
 .last_name {
   margin-top: 1rem !important;
 }
@@ -204,6 +217,7 @@
   transition: 0.5s linear !important;
   position: relative;
   bottom: -1vw;
+  cursor: pointer;
 }
 
 
@@ -267,7 +281,7 @@
   width: 84vw;
   color: #BFBFBF;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 }

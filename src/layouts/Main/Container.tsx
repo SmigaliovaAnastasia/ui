@@ -12,6 +12,7 @@ import { CreateCollection } from "../../pages/Collections/CreateCollection";
 import { UpdateCollection } from "../../pages/Collections/UpdateCollection";
 import { CollectionsGames } from "../../pages/CollectionsGames/CollectionsGames";
 import { Logout } from "../../pages/Login/Logout";
+import { UpdateGame } from "../../pages/Game/UpdateGame";
 
 export function Container() {
 
@@ -22,6 +23,7 @@ export function Container() {
         <Route path="/browse" element={<Browse />}></Route>
         <Route path="/browse/:id" element={<Game />}></Route>
         <Route path="/createGame" element={<CreateGame />}></Route>
+        <Route path="/updateGame/:id" element={<UpdateGame />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/logout" element={<Logout />}></Route>
         <Route path="/collections" element={<Collections />}></Route>

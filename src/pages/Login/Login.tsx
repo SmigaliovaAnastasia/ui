@@ -11,6 +11,7 @@ import { UserService } from "../../services/UserService";
 import { UserContext } from "../../common/Contexts/UserContext";
 import './Login.css';
 import { GetUser } from "../../services/Utils/GetUser";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object({
   userName: yup.string().required(),
@@ -32,7 +33,7 @@ const StyledTextField = styled(TextField)({
 
 export function Login() {
   const authenticationService = new AuthenticationService;
-  const userService = new UserService;
+  const navigate = useNavigate();
   const { control, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   });
@@ -44,6 +45,7 @@ export function Login() {
     response.then(() => {
       let user = GetUser();
       setUser(user);
+      navigate('/');
     });
   };
 

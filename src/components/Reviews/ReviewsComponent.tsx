@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { FilterBarComponent } from "../../components/Filters/FilterBarComponent";
 import { GameService } from "../../services/GameService";
 import { SortingComponent } from "../../components/Sorting/SortingComponent";
-import "./Browse.css";
-import { defaultPagedRequest } from "../../common/Constants/DefaultPagedRequest";
+import "../../pages/Browse/Browse.css";
+import { defaultPagedRequest, defaultPagedRequestWithFilter } from "../../common/Constants/DefaultPagedRequest";
 import { Pagination } from "@mui/material";
 import { pagedRequestReducer } from "../../common/Reducers/PagedRequestReducer";
 import { PagedRequestContext } from "../../common/Contexts/PagedRequestContext";
@@ -16,42 +16,31 @@ import { gameSortingList } from "../../common/Constants/Sorting/GameSortingList"
 import { DialogContext } from "../../common/Contexts/DialogContext";
 import CollectionSelectDialog from "../../components/DialogWindows/CollectionSelectDialog";
 import { SettingsSystemDaydreamOutlined } from "@mui/icons-material";
+import { ReviewService } from "../../services/ReviewsService";
+import { ReviewDto } from "../../common/Entities/ReviewDtos/ReviewDto";
+import { reviewsSortingList } from "../../common/Constants/Sorting/ReviewsSortingList";
+import { ReviewListComponent } from "./ReviewListComponent";
+import { ReviewCreateComponent } from "./ReviewCreateComponent";
 
-export function Browse() {
+export function ReviewsComponent(props: {gameId : string}) {
 
-  const gameservice = new GameService;
-  const [open, setOpen] = useState(false);
-  const [dialog, setDialog] = useState<JSX.Element>();
+  const reviewsService = new ReviewService;
 
-  const [games, setGames] = useState<JSX.Element[]>();
+  const [reviews, setReviews] = useState<JSX.Element[]>();
   const [totalPages, setTotalPages] = useState(1);
-  const [filterBar, setFilterBar] = useState<JSX.Element>();
 
-  const [state, dispatch] = useReducer(pagedRequestReducer, defaultPagedRequest);
-
-  const handleClick = (id : string) => {
-    setDialog(<CollectionSelectDialog gameId={id}></CollectionSelectDialog>);
-    setOpen(true);
-  }
+  const [state, dispatch] = useReducer(pagedRequestReducer, defaultPagedRequestWithFilter([{
+    filterProperty: "game_id",
+    filterOperator: '',
+    value: String(props.gameId)
+  }]));
 
   useEffect(() => {
-    if(!open) {
-      setDialog(<></>)
-    }
-  }, [open]);
-
-  useEffect(() => {
-    const filterBarModel = gameFilterBarModelWithGenresAndComplexityLevels();
-    filterBarModel.then((f) => setFilterBar(
-      <FilterBarComponent filterBarModel={f}></FilterBarComponent>
-    ));
-  }, []);
-
-  useEffect(() => {
-    let data = gameservice.GetPagedGames(state);
-    data.then((pagedResult: PagedResult<GameListDto>) => {
+    console.log(state);
+    let data = reviewsService.GetPagedReviews(state);
+    data.then((pagedResult: PagedResult<ReviewDto>) => {
       setTotalPages(Math.ceil(pagedResult.total / pagedResult.pageSize));
-      setGames(pagedResult.items.map((g) => { return <GameListComponent key={g.id} game={g} onClick={handleClick}/> }));
+      setReviews(pagedResult.items.map((g) => { return <ReviewListComponent key={g.id} review={g} /> }));
     });
   }, [state]);
 
@@ -72,29 +61,25 @@ export function Browse() {
   return (
     <div>
       <PagedRequestContext.Provider value={{ state, dispatch }}>
-        <p className="header">Browse games</p>
         <div className="browse">
           <div className="browse_container">
             <div className="search">
               <div className="properties">
                 <div className="searchbar_container">
                   <input className="searchbar" type="text" placeholder="Search" onChange={e => handleNameChange(e.target.value)} />
-                  <img alt="" className="magnifier" src="./img/Magnifier.svg" />
+                  <img alt="" className="magnifier" src="/img/Magnifier.svg" />
                 </div>
               </div>
-              <SortingComponent sortingList={gameSortingList}></SortingComponent>
+              <SortingComponent sortingList={reviewsSortingList}></SortingComponent>
             </div>
-            {games}
+            <ReviewCreateComponent gameId={props.gameId}></ReviewCreateComponent>
+            {reviews}
             <div className="pagination">
               <Pagination count={totalPages} onChange={(e, value) => dispatch({ type: "setPage", payload: value })} />
             </div>
           </div>
-          {filterBar}
         </div>
       </PagedRequestContext.Provider>
-      <DialogContext.Provider value={{open, setOpen}}>
-        {dialog}
-      </DialogContext.Provider>
     </div>
   );
 };

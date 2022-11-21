@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../common/Contexts/UserContext";
+import { GetUser } from "../../services/Utils/GetUser";
 import { LogOut } from "../../services/Utils/Logout";
 
 export function Logout() {
@@ -9,7 +10,7 @@ export function Logout() {
 
   useEffect (() => {
     LogOut();
-    setUser(null);
+    setUser(GetUser());
   }, []);
 
   return (

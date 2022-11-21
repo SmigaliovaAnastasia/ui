@@ -1,4 +1,6 @@
 export const LogOut = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('user');
+  if(localStorage.getItem('token'))
+    localStorage.removeItem('token');
+  if(localStorage.getItem('user'))
+    localStorage.removeItem('user');
 }

@@ -8,11 +8,11 @@ import { defaultPagedRequestWithFilter } from "../../common/Constants/DefaultPag
 import { Pagination } from "@mui/material";
 import { pagedRequestReducer } from "../../common/Reducers/PagedRequestReducer";
 import { PagedRequestContext } from "../../common/Contexts/PagedRequestContext";
-import { gameFilterBarModel } from "../../common/Constants/GameFilters/GameFilterBar";
+import { gameFilterBarModel } from "../../common/Constants/Filters/GameFilterBar";
 import { GameListComponent } from "../../components/Games/GameListComponent";
 import { PagedResult } from "../../common/Models/PagedRequest/PagedResult";
 import { GameListDto } from "../../common/Entities/GameDtos/GameListDto";
-import { gameSortingList } from "../../common/Constants/GameSorting/GameSortingList";
+import { gameSortingList } from "../../common/Constants/Sorting/GameSortingList";
 import { CollectionsGamesService } from "../../services/CollectionsGamesService";
 import { CollectionGameDto } from "../../common/Entities/CollectionGameDtos/CollectionGameDto";
 import { CollectionGameComponent } from "../../components/Collections/CollectionGameComponent";
@@ -24,7 +24,7 @@ import { CollectionService } from "../../services/CollectionService";
 import GameSelectDialog from "../../components/DialogWindows/GameSelectDialog";
 import { PropaneSharp } from "@mui/icons-material";
 import { DialogContext } from "../../common/Contexts/DialogContext";
-import { gameFilterBarModelWithGenresAndComplexityLevels } from "../../common/Constants/GameFilters/GameFilterBar";
+import { gameFilterBarModelWithGenresAndComplexityLevels } from "../../common/Constants/Filters/GameFilterBar";
 
 export function CollectionsGames() {
   const params = useParams();

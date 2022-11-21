@@ -28,9 +28,9 @@ const schema = yup.object({
 
 export function CreateGame() {
   const gameservice = new GameService();
-  const onSubmit = (data: any) => {console.log(data); gameservice.AddGame(data)};
+  const onSubmit = (data: any) => { gameservice.AddGame(data) };
 
-  const emptyDto : GameDto = {
+  const emptyDto: GameDto = {
     id: '',
     name: '',
     description: '',
@@ -45,13 +45,13 @@ export function CreateGame() {
     releaseDate: new Date(),
     genreDtos: [],
     gameSeriesDto: {
-      id: '24B8718B-E059-ED11-8D43-A276BD7EDE91',
+      id: '',
       name: '',
       description: '',
       imageUrl: ''
     },
     complexityLevelDto: {
-      id: 'EF0AF3C6-F35D-ED11-8D43-A276BD7EDE91',
+      id: '',
       name: '',
       description: ''
     },

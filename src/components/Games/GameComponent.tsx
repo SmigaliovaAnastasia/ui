@@ -2,24 +2,37 @@ import { GameDto } from "../../common/Entities/GameDtos/GameDto"
 import { GenreDto } from "../../common/Entities/GameDtos/GenreDto"
 import { StarsBarComponent } from "../Ratings/StarsBarComponent"
 import './GameComponent.css'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import { UserContext } from "../../common/Contexts/UserContext"
 import { Roles } from "../../common/Constants/Roles"
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import { GameService } from "../../services/GameService"
+import { ReviewsComponent } from "../Reviews/ReviewsComponent"
 
 
 export function GameComponent(props: { game: GameDto }) {
 
     const { user, setUser } = useContext(UserContext);
+    const gameService = new GameService;
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        gameService.DeleteGame(props.game.id).then(() =>
+            navigate('/')
+        );
+    }
+
     const adminMode = user?.userRole === Roles.Admin ?
         [
             <div key={"adminButtons"} className='admin_game_options'>
-                <Link to={`/`}><ModeEditOutlineOutlinedIcon key={"edit"} className="game_edit" /></Link>
-                <div key={"delete"}><DeleteOutlineOutlinedIcon className="game_delete" /></div>
+                <Link to={`/updateGame/${props.game.id}`}><ModeEditOutlineOutlinedIcon key={"edit"} className="game_edit" /></Link>
+                <div key={"delete"}><DeleteOutlineOutlinedIcon onClick={handleClick} className="game_delete" /></div>
             </div>
         ] : [];
+
+    
 
     return (
         <div>
@@ -65,8 +78,14 @@ export function GameComponent(props: { game: GameDto }) {
                                 <p className="description_text">{props.game.gameSeriesDto.name} </p>
                             </div>
 
-                            <div className="description_line">
-                                <p className="description_name" style={{ color: '#BFBFBF' }}>Description: {props.game.description}</p>
+                            <div>
+                                <p className="description_name">Description: </p>
+                                <p className="description_text">{props.game.description} </p>
+                            </div>
+
+                            <div>
+                                <p className="description_name">Rules: </p>
+                                <p className="description_text">{props.game.rules} </p>
                             </div>
                         </div>
                     </div>
@@ -84,11 +103,10 @@ export function GameComponent(props: { game: GameDto }) {
             <div className="main_container">
                 <div className="tabs">
                     <div className="tab active">Reviews</div>
-                    <div className="tab">Rules</div>
                 </div>
 
                 <div className="tab_content">
-                    <p></p>
+                    <ReviewsComponent gameId={props.game.id}/>
                 </div>
             </div>
         </div>
