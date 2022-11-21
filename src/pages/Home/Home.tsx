@@ -30,7 +30,7 @@ export function Home() {
         </StyledCard>
       </Grid>
       <Grid item xs={12} md={4}>
-        <Grid container spacing={2}>
+        <Grid container display="flex" flexDirection="column" spacing={2}>
           <Grid item xs={12} md={6}>
             <StyledCardComponent text='Find Games' link='/browse' img='./img/magnifier.svg'></StyledCardComponent>
           </Grid>
@@ -39,15 +39,6 @@ export function Home() {
           </Grid>
           <Grid item xs={12} md={6}>
             <StyledCardComponent text='Rate Games' link='/' img='./img/rgames.svg'></StyledCardComponent>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <StyledCardComponent text='FAQs' link='/' img='./img/faq.svg'></StyledCardComponent>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <StyledCardComponent text='Manage Profile' link='/' img='./img/user.svg'></StyledCardComponent>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <StyledCardComponent text='Settings' link='/' img='./img/settings.svg'></StyledCardComponent>
           </Grid>
         </Grid>
       </Grid>
