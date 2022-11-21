@@ -32,7 +32,7 @@ export class AuthenticationService {
       body: JSON.stringify(user)
     });
 
-    const data = await response.json();
+    const data = await response;
     if (!response.ok) {
       const error = data || response.statusText;
       return Promise.reject(error);

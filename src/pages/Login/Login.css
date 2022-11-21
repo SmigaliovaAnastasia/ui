@@ -11,3 +11,11 @@
   font-size: 2rem;
   color: white;
 }
+
+.form_error {
+  color: rgb(248, 111, 38);
+}
+
+.form_link {
+  margin-top: 1rem!important;
+}

@@ -82,7 +82,6 @@ export function GameCreateUpdateComponent(props: { game: GameDto, onSubmit: (dat
   });
 
   const handleDownload = (value: FileList | null) => {
-
     if (value) {
       const isValid = ValidateFiles(value[0]);
       if (isValid === '')

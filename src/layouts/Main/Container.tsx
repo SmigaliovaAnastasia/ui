@@ -13,6 +13,7 @@ import { UpdateCollection } from "../../pages/Collections/UpdateCollection";
 import { CollectionsGames } from "../../pages/CollectionsGames/CollectionsGames";
 import { Logout } from "../../pages/Login/Logout";
 import { UpdateGame } from "../../pages/Game/UpdateGame";
+import { Register } from "../../pages/Login/Register";
 
 export function Container() {
 
@@ -22,14 +23,15 @@ export function Container() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/browse" element={<Browse />}></Route>
         <Route path="/browse/:id" element={<Game />}></Route>
-        <Route path="/createGame" element={<CreateGame />}></Route>
-        <Route path="/updateGame/:id" element={<UpdateGame />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
         <Route path="/logout" element={<Logout />}></Route>
         <Route path="/collections" element={<Collections />}></Route>
         <Route path="/createCollection" element={<CreateCollection />}></Route>
         <Route path="/updateCollection/:id" element={<UpdateCollection />}></Route>
         <Route path="/collectionGames/:id" element={<CollectionsGames />}></Route>
+        <Route path="/createGame" element={<CreateGame />}></Route>
+        <Route path="/updateGame/:id" element={<UpdateGame />}></Route>
       </Routes>
       <DialogDefault text={""} proceed={() => { }}></DialogDefault>
     </div>

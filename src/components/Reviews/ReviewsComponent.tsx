@@ -26,6 +26,7 @@ import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutl
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { ReviewUpdateDto } from "../../common/Entities/ReviewDtos/ReviewUpdateDto";
 import { request } from "http";
+import { GameForceUpdateContext } from "../../common/Contexts/GameForceUpdateContext";
 
 export function ReviewsComponent(props: { gameId: string }) {
 
@@ -36,9 +37,13 @@ export function ReviewsComponent(props: { gameId: string }) {
   const [userCommentManager, setUserCommentManager] = useState<JSX.Element>();
 
   const { state, dispatch } = useContext(PagedRequestContext);
+  const {update,setUpdate} = useContext(GameForceUpdateContext);
 
   const handleDelete = (reviewId: string) => {
-    reviewsService.DeleteReview(reviewId).then(() => dispatch({ type: "forceUpdate" }));
+    reviewsService.DeleteReview(reviewId).then(() => {
+    dispatch({ type: "forceUpdate" });
+    setUpdate(!update);
+  });
   }
 
   const handleUpdate = (reviewUpdateDto: ReviewDto) => {
