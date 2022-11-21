@@ -21,8 +21,6 @@ export function Footer() {
           </Grid>
           <Grid item xs={12} md={6}>
             <div className="footerRightColumn">
-              <Link to='/'>PRIVACY POLICY</Link>
-              <Link to='/'>TERMS AND CONDITIONS</Link>
               <Link to='/' className="footerCopyright">
                 <img className='footerImg' src='/img/logo.svg' />
                 <p>Copyright © 2022, Angesie</p>

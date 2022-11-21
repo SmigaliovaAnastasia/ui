@@ -18,6 +18,7 @@ import { ComplexityLevelContext } from "../../common/Contexts/ComplexityLevelCon
 import { ComplexityLevelSelect } from "../GameSelect/ComplexityLevelSelect";
 import { GameSeriesContext } from "../../common/Contexts/GameSeriesContext";
 import { GameSeriesSelect } from "../GameSelect/GameSeriesSelect";
+import { ValidateFiles } from "../../services/Utils/ValidateFile";
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(200),
@@ -81,11 +82,17 @@ export function GameCreateUpdateComponent(props: { game: GameDto, onSubmit: (dat
   });
 
   const handleDownload = (value: FileList | null) => {
+
     if (value) {
-      handleFileUpload(value).then((name) => {
-        setImage(`/img/games/${name}`);
-      })
-    };
+      const isValid = ValidateFiles(value[0]);
+      if (isValid === '')
+        handleFileUpload(value).then((name) => {
+          setImage(`/img/games/${name}`);
+        })
+      else {
+        console.log(isValid);
+      }
+    }
   }
 
   useEffect(() =>
